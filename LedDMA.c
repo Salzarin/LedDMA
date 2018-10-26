@@ -1,0 +1,29 @@
+#include <sys/mman.h>
+#include <stdint.h>
+
+(volatile uint32_t *) gpio;
+
+void setup_gpio(){
+	uint32_t memfd = open("/dev/gpiomem", O_RDWR | O_SYNC);
+	void gpio_map = mmap(
+						NULL,
+						0xB4,
+						PROT_READ|PROT_WRITE,
+						MAP_SHARED,
+						memfd,
+						0);
+	if(gpio_map == MAP_FAILED){
+		printf("Failed gpio map.");
+		exit(-1);
+	}
+	gpio = (volatile uint32_t *) gpio_map;
+}
+
+
+int main(){
+
+setup_gpio();
+
+
+return 0;
+}
