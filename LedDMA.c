@@ -1,7 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
 #include <sys/mman.h>
-#include <stdint.h>
+#include <unistd.h>
 
-(volatile uint32_t *) gpio;
+volatile uint32_t * gpio;
 
 void setup_gpio(){
 	uint32_t memfd = open("/dev/gpiomem", O_RDWR | O_SYNC);
