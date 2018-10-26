@@ -8,7 +8,7 @@ volatile unsigned int * gpio;
 
 void setup_gpio(){
 	unsigned int memfd = open("/dev/gpiomem", O_RDWR | O_SYNC);
-	void gpio_map = mmap(
+	void* gpio_map = mmap(
 						NULL,
 						0xB4,
 						PROT_READ|PROT_WRITE,
