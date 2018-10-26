@@ -4,10 +4,10 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-volatile uint32_t * gpio;
+volatile unsigned int * gpio;
 
 void setup_gpio(){
-	uint32_t memfd = open("/dev/gpiomem", O_RDWR | O_SYNC);
+	unsigned int memfd = open("/dev/gpiomem", O_RDWR | O_SYNC);
 	void gpio_map = mmap(
 						NULL,
 						0xB4,
@@ -19,7 +19,7 @@ void setup_gpio(){
 		printf("Failed gpio map.");
 		exit(-1);
 	}
-	gpio = (volatile uint32_t *) gpio_map;
+	gpio = (volatile unsigned int *) gpio_map;
 }
 
 
