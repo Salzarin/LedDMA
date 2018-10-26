@@ -22,11 +22,18 @@ void setup_gpio(){
 	gpio = (volatile unsigned int *) gpio_map;
 }
 
+void setPin(unsigned int pin, int value){
+	if(value >0b111){
+	return;
+	}
+	*(gpio + pin/10) &= ~(7<<((pin%10)*3));
+	*(gpio + (pin/10)) |= (value<<((pin%10)*3));
 
+}
 int main(){
 
 setup_gpio();
-
+setPin(21, 1);
 
 return 0;
 }
