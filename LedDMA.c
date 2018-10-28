@@ -111,7 +111,7 @@ void setPwm(){
 usleep(10);
 *(pwm+1) =-1;
 usleep(10);
-*(pwm+4) = 25; 
+*(pwm+4) = 32; 
 usleep(10);
 *(pwm) |= 0x0040;
 usleep(10);
@@ -122,10 +122,15 @@ sleep(2);
 void reset(){
 
 //*(pwm) =0;
-for(int i = 0; i<1000000; i++){
+
+while(!(*(pwm+1) &0x2));
+for(int i = 0; i<50000; i++){
 	while((*(pwm+1) &0x1));
 	*(pwm+6) = 0x0;
 }
+
+
+
 //}
 //printf("Restting\n");
 }
@@ -133,18 +138,18 @@ void setColor( unsigned int led){
 
 
 
+for(int i = 0; i<1;i++){
+	while((*(pwm+1) &0x1));
+	*(pwm+6) = 0xCCCCCCCC;
+}
+for(int i = 0; i<2; i++){
+	while((*(pwm+1) &0x1));
+	*(pwm+6) = 0x88888888;
+}
+
+
+
 /*
-for(int i = 0; i<16; i++){
-	while((*(pwm+1) &0x1));
-	*(pwm+6) = 0xFE000000;
-}
-for(int i = 0; i<8;i++){
-	while((*(pwm+1) &0x1));
-	*(pwm+6) = 0xFFFFC000;
-}
-*/
-
-
 for(int i = 0; i<24;i++){
 while((*(pwm+1) &0x1));
 	if((led>>i) & 0x1){
@@ -155,7 +160,7 @@ while((*(pwm+1) &0x1));
 	}
 
 }
-
+*/
 /*
 		for(int j = 0; j<3;j++){
 			unsigned int word = 0;
@@ -191,9 +196,9 @@ void set_pwm_clock(){
 
 	*(pwm_clock + 40) = (0x5a << 24) | (1<<5);
 	usleep(10);
-	*(pwm_clock+41) = (0x5a<<24) | (25<<12) ;
+	*(pwm_clock+41) = (0x5a<<24) | (6<<12) ;
 	usleep(10);
-	*(pwm_clock + 40) = (0x5a << 24) | 0x6;
+	*(pwm_clock + 40) = (0x5a << 24) | 0x1;
 	usleep(10);
 	*(pwm_clock + 40) |= (0x5a << 24) | (1<<4);
 	while(!(*(pwm_clock + 40)  & (1<<7)));
