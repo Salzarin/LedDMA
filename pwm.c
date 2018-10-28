@@ -52,7 +52,7 @@ sleep(2);
 
 }
 
-void set_pwm_clock(unsigned int type = 1, unsigned int IDIV = 6, unsigned int FDIV = 0){
+void set_pwm_clock(unsigned int type, unsigned int IDIV, unsigned int FDIV){
 
 	*(pwm_clock + 40) = (0x5a << 24) | (1<<5);
 	usleep(10);

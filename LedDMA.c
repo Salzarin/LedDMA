@@ -43,7 +43,7 @@ return 0;
 void reset(){
 	
 while(!(*(pwm+1) &0x2));
-for(int i = 0; i<50000; i++){
+for(int i = 0; i<100000; i++){
 	while((*(pwm+1) &0x1));
 	*(pwm+6) = 0x0;
 }
@@ -51,13 +51,13 @@ for(int i = 0; i<50000; i++){
 }
 
 unsigned int makeWord(unsigned char led){
-	unsigned int word;
+	unsigned int word =0;
 	for(int i = 0; i<8;i++){
 		if((led>>i) & 0x1){
-			word |= 0xC<<(i*4);
+			word |= 0xC<<((7-i)*4);
 		}
 		else{
-			word |= 0xC<<(i*4);
+			word |= 0x8<<((7-i)*4);
 		}
 	}
 	return word;
@@ -67,7 +67,6 @@ unsigned int makeWord(unsigned char led){
 void setColor( unsigned int led){
 
 
-unsigned int word;
 
 
 while((*(pwm+1) &0x1));
@@ -79,6 +78,16 @@ while((*(pwm+1) &0x1));
 while((*(pwm+1) &0x1));
 *(pwm+6) = makeWord((led & 0xFF0000)>>16);
 
+/*
+	while((*(pwm+1) &0x1));
+	*(pwm+6) = 0xCCCCCCCC;
+
+	while((*(pwm+1) &0x1));
+	*(pwm+6) = 0x88888888;
+
+	while((*(pwm+1) &0x1));
+	*(pwm+6) = 0x88888888;
+*/
 }
 
 void *showLights(){
@@ -104,14 +113,14 @@ setPinMode(21,0);
 //setup_dma();
 printf("Setting up the clock\n");
 setup_pwm_clock();
-set_pwm_clock();
+set_pwm_clock(1,6,0);
 printf("Finished Setting up the clock\n");
 printf("Setting up PWM\n");
 setup_pwm();
 setPwm();
 printf("Finished Setting up PWM\n");
 
-int state = 0;
+//int state = 0;
 
 pthread_t thread_id;
 pthread_create(&thread_id,NULL,showLights,NULL);
