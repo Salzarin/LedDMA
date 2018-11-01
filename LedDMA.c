@@ -10,7 +10,7 @@
 
 #include "gpio.h"
 #include "pwm.h"
-
+#include "dma.h"
 
 void reset(){
 	
@@ -61,7 +61,7 @@ setup_gpio();
 setPinMode(18, 2);
 setPinMode(20,0);
 setPinMode(21,0);
-//setup_dma();
+
 printf("Setting up the clock\n");
 setup_pwm_clock();
 set_pwm_clock(1,6,0);
@@ -71,26 +71,31 @@ setup_pwm();
 setPwm();
 printf("Finished Setting up PWM\n");
 
+setup_dma();
+set_dma();
+
+
+
 //int state = 0;
 
 //pthread_t thread_id;
 //pthread_create(&thread_id,NULL,showLights,NULL);
-//while(1){
-//for(int i =0; i<100;i++){
+/*
+while(1){
 	//setColor(0x0F0);
+	showLights();
 
-//}
 	//setColor(0x0);
 
-//}
-
-
-while(1){
-//state =!state;
-//setPin(18,state);
-//printf("%x %x\n", readPin(20), readPin(21));
-//usleep(10);
 }
-pthread_join(thread_id,NULL);
+*/
+printf("starting loop\n");
+while(1){
+
+//printf("%d %d\n", readPin(20), readPin(21));
+printf("%x\n",*(dma+320));
+usleep(10);
+}
+//pthread_join(thread_id,NULL);
 return 0;
 }

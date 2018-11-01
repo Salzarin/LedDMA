@@ -4,13 +4,16 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/mman.h>
-
+#include <stdint.h>
 #include <unistd.h>
 #include <time.h>
-
+#include <string.h>
 
 volatile unsigned int *dma;
-volatile unsigned int *data;
+unsigned int *data;
+uintptr_t virtTophys(void* virt);
+void freeVirtPhysPage(void* virtAddr);
+void makeVirtPhysPage(void** virtAddr, void** physAddr);
 
 
 typedef struct DMAChannelHeader{
@@ -38,7 +41,14 @@ typedef struct DMAControlBlock{
 } DMAControlBlock;
 
 
-volatile DMAControlBlock *cbData;
+
+void *virtSrcPage, *physSrcPage;
+void *virtDestPage, *physDestPage;
+
+void *virtCbPage, *physCbPage;
+
+DMAControlBlock *cb;
+
 
 void setup_dma();
 int set_dma();
