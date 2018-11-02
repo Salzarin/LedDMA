@@ -79,11 +79,11 @@ int set_dma(){
 	unsigned int* dest = virtDestPage;
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
 	memcpy(srcArray, data, led*3*4);
-
+	uint32_t physDest = virtTophys(dest);
 	for(int i = 0; i<(3*led);i++){
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
 		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i));
-		cb_ptr->DEST_ADDR = (uint32_t)(virtTophys(pwm+6));
+		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;
 		cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(cb_ptr+1));
@@ -94,7 +94,7 @@ int set_dma(){
 
 	
 	
-	printf("Destination Data: %x\n",(uint32_t)(0x20101000+0x18));
+	printf("Destination Data: %x\n",physDest);
 
 	*(dma_channel+0xff0/4)|= (1<<6);
 	*(dma_channel)  |= (1<<31);
