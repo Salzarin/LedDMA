@@ -54,7 +54,7 @@ unsigned int makeWord(unsigned char led){
 
 int set_dma(){
 	unsigned int led = 1;
-	volatile unsigned int* dma_channel = dma+0x600/4;
+	volatile unsigned int* dma_channel = dma+0x500/4;
 	data = malloc(led*3*4);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
@@ -96,7 +96,7 @@ int set_dma(){
 	
 	printf("Destination Data: %x\n",(uint32_t)(0x20101000+0x18));
 
-	*(dma_channel +0x600/4+0xff0/4)|= (1<<5);
+	*(dma_channel+0xff0/4)|= (1<<5);
 	*(dma_channel)  |= (1<<31);
 	usleep(100);
 	*(dma_channel)  |= (1<<30);
