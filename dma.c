@@ -124,7 +124,7 @@ for (int j= 0; j<(led/40); j++){
 			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
 			printf("Link to next block: %x %x\n",(uint32_t)led_cb[i/120], virtTophys(led_cb[i/150]));
 			cb_ptr = led_cb[i/120];
-			srcData = (unsigned int *)virtSrcPage[i/120];
+			srcData = (unsigned int *)virtSrcPage[0];
 			printf("Data Src to next block: %x %x\n", (uint32_t)SrcPages[i/120] ,virtTophys(SrcPages[i/120]));
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
