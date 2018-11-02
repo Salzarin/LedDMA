@@ -125,10 +125,10 @@ for (int j= 0; j<(led/40); j++){
 			led_cb[i/120] = (DMAControlBlock *)virtCbPage[i/120];
 			cb_ptr--;
 			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
-			printf("Link to next block: %x\n", virtTophys(led_cb[i/150]));
+			printf("Link to next block: %x %x\n",led_cb[i/120], virtTophys(led_cb[i/150]));
 			cb_ptr = led_cb[i/120];
 			srcData = srcArray[i/120];
-			printf("Data Src to next block: %x\n", virtTophys(srcData));
+			printf("Data Src to next block: %x %x\n", srcData ,virtTophys(srcData));
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
 		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray[0]));
