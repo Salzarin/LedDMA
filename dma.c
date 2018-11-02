@@ -108,7 +108,7 @@ int set_dma(){
 	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	
-	for(int i = 0; i<(led/50); i++){
+	for(int i = 0; i<((led/50)+1); i++){
 	makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
 	led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 	}
