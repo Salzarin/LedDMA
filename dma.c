@@ -118,7 +118,7 @@ int set_dma(){
 	memcpy(srcArray, data, (led+1)*3*4);
 	
 	unsigned int * BlankArray = (unsigned int*)(virtBlankSrcPage);
-	memset(BlankArray,0,4096);
+	memset(BlankArray,data[led*3+1],1);
 	uint32_t physDest = 0x7E20C018;
 	
 		
