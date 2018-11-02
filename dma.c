@@ -87,14 +87,13 @@ int set_dma(){
 	
 	virtCbPage = malloc(8);
 	physCbPage = malloc(8);
-	led_cb = malloc(2*sizeof(DMAControlBlock));
 	makeVirtPhysPage(&virtCbPage[0], &physCbPage[0]);
 	makeVirtPhysPage(&virtCbPage[1], &physCbPage[1]);
 	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	
-	led_cb[0] = (DMAControlBlock *)virtCbPage[0];
-	DMAControlBlock * cb_ptr = led_cb[0];	
+	led_cb = (DMAControlBlock *)virtCbPage[0];
+	DMAControlBlock * cb_ptr = led_cb;	
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
 	memcpy(srcArray, data, (led+wait_time)*3*4);
 	uint32_t physDest = 0x7E20C018;
@@ -135,7 +134,7 @@ int set_dma(){
 	
 	
 	cb_ptr--;	
-	cb_ptr->NEXTCONBK = virtTophys(led_cb[0]);
+	cb_ptr->NEXTCONBK = virtTophys(led_cb);
 
 	
 	
