@@ -96,7 +96,7 @@ int set_dma(){
 	
 	printf("Destination Data: %x\n",(uint32_t)(0x20101000+0x18));
 
-	*(dma_channel+0xff0/4)|= (1<<5);
+	*(dma_channel+0xff0/4)|= (1<<6);
 	*(dma_channel)  |= (1<<31);
 	usleep(100);
 	*(dma_channel)  |= (1<<30);
