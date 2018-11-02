@@ -93,7 +93,7 @@ printf("starting loop\n");
 while(1){
 
 //printf("%d %d\n", readPin(20), readPin(21));
-printf("%x\n",*(dma+320));
+//printf("%x\n",*(dma+320));
 usleep(10);
 }
 //pthread_join(thread_id,NULL);
