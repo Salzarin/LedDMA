@@ -121,7 +121,7 @@ int set_dma(){
 		
 	for(int i = 0; i<(3*led);i++){
 		if(!(i%150) && i!=0){
-			printf("%d", i);
+			printf("%d\n", i);
 			//makeVirtPhysPage(&virtCbPage[i/150], &physCbPage[i/150]);
 			led_cb[i/150] = (DMAControlBlock *)virtCbPage[i/150];
 			cb_ptr--;
