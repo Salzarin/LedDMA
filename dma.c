@@ -106,7 +106,7 @@ int set_dma(){
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;
-		cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(cb_ptr));
+		cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(cb_ptr+1));
 		cb_ptr++;
 	}
 	
