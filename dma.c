@@ -58,15 +58,13 @@ int set_dma(){
 	unsigned int wait_time = 200;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
-	data = malloc(4*led/40);
+	data = malloc(4**3led);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
-	unsigned int * data_ptr = data[0];
-
+data_ptr = data;
 
 for (int j= 0; j<(led/40); j++){
-	data[j] = malloc(40*3*4);
-	data_ptr = data[j/40];
+	
 	for(int i = 0; i<led;i++){
 		if(i > 50){
 		*data_ptr = makeWord(0xFF);
@@ -94,13 +92,14 @@ for (int j= 0; j<(led/40); j++){
 		}
 	}
 }
-	virtSrcPage = malloc(4*(1+led/40));
-	physSrcPage = malloc(4*(1+led/40));
+
 	
 	
 	makeVirtPhysPage(&virtBlankSrcPage, &physBlankSrcPage);
 	
 
+	virtSrcPage = malloc(4*(1+led/40));
+	physSrcPage = malloc(4*(1+led/40));
 	
 	virtCbPage = malloc(4*(1+led/40));
 	physCbPage = malloc(4*(1+led/40));
@@ -114,11 +113,11 @@ for (int j= 0; j<(led/40); j++){
 	unsigned int ** srcArray = malloc(4*led/40);
 	
 	
-	for(int i = 0; i<((led/40)+1); i++){
+	for(int i = 0; i<((led/40)); i++){
 		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
 		makeVirtPhysPage(&virtSrcPage[i], &physSrcPage[i]);
 		srcArray[i] = (unsigned int*)virtSrcPage;
-		memcpy(srcArray[i], data[i], (led+1)*3*4);
+		memcpy(srcArray[i], data+i*4*3*40, (led+1)*3*4);
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 	}
 	
