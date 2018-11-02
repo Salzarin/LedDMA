@@ -54,8 +54,10 @@ unsigned int makeWord(unsigned char led){
 
 int set_dma(){
 	unsigned int led = 1;
+	unsigned int wait_time = 20;
 	volatile unsigned int* dma_channel = dma+0x500/4;
-	data = malloc(led*3*4);
+	unsigned int total_led = led+wait_time;
+	data = malloc((led+wait_time)*3*4);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
 	unsigned int * data_ptr = data;
@@ -68,6 +70,14 @@ int set_dma(){
 		data_ptr++;
 	}
 	
+	for(int i = 0; i<wait_time;i++){
+		*data_ptr = makeWord(0x00);
+		data_ptr++;
+		*data_ptr = makeWord(0x00);
+		data_ptr++;
+		*data_ptr = makeWord(0x00);
+		data_ptr++;
+	}
 	
 	makeVirtPhysPage(&virtSrcPage, &physSrcPage);
 	makeVirtPhysPage(&virtDestPage, &physDestPage);
@@ -78,10 +88,10 @@ int set_dma(){
 	DMAControlBlock * cb_ptr = cb;	
 	unsigned int* dest = virtDestPage;
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
-	memcpy(srcArray, data, led*3*4);
+	memcpy(srcArray, data, (led+wait_time)*3*4);
 	uint32_t physDest = 0x7E20C018;
 	for(int i = 0; i<(3*led);i++){
-		cb_ptr->TI = (1<<6)| (1<<26)|(1<<1);
+		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
 		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i));
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
@@ -89,6 +99,18 @@ int set_dma(){
 		cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(cb_ptr+1));
 		cb_ptr++;
 	}
+	
+	for(int i = 0; i<wait_time;i++){
+		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
+		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i));
+		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
+		cb_ptr->TXFR_LEN = 4;
+		cb_ptr->STRIDE = 0;
+		cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(cb_ptr+1));
+		cb_ptr++;
+	}
+	
+	
 	cb_ptr--;	
 	cb_ptr->NEXTCONBK = virtTophys(cb);
 
