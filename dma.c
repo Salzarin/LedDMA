@@ -64,9 +64,9 @@ int set_dma(){
 	for(int i = 0; i<led;i++){
 		*data_ptr = makeWord(0xFF);
 		data_ptr++;
-		*data_ptr = makeWord(0xEE);
+		*data_ptr = makeWord(0xFF);
 		data_ptr++;
-		*data_ptr = makeWord(0x00);
+		*data_ptr = makeWord(0xFF);
 		data_ptr++;
 	}
 	
