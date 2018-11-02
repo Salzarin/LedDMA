@@ -132,7 +132,7 @@ void setup_dma(){
 	unsigned int memfd = open("/dev/mem", O_RDWR | O_SYNC);
 	void* dma_map = mmap(
 						NULL,
-						0x1000,
+						0xF00,
 						PROT_READ|PROT_WRITE,
 						MAP_SHARED|MAP_LOCKED,
 						memfd,
