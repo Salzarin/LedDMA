@@ -100,15 +100,15 @@ int set_dma(){
 	
 
 	
-	virtCbPage = malloc(4*(1+led/150));
-	physCbPage = malloc(4*(1+led/150));
-	led_cb = malloc(4*(1+led/150));
+	virtCbPage = malloc(4*(1+led/40));
+	physCbPage = malloc(4*(1+led/40));
+	led_cb = malloc(4*(1+led/40));
 	
 	
 	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	
-	for(int i = 0; i<((led/150)+1); i++){
+	for(int i = 0; i<((led/40)+1); i++){
 		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 	}
@@ -123,13 +123,13 @@ int set_dma(){
 	
 		
 	for(int i = 0; i<(3*led);i++){
-		if(!(i%150) && i!=0){
-			printf("%d %d\n", i, i/150);
+		if(!(i%120) && i!=0){
+			printf("%d %d\n", i, i/120);
 			//makeVirtPhysPage(&virtCbPage[i/150], &physCbPage[i/150]);
-			led_cb[i/150] = (DMAControlBlock *)virtCbPage[i/150];
+			led_cb[i/120] = (DMAControlBlock *)virtCbPage[i/120];
 			cb_ptr--;
-			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/150]));
-			cb_ptr = led_cb[i/150];
+			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
+			cb_ptr = led_cb[i/120];
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
 		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i));
