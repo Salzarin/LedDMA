@@ -102,10 +102,11 @@ int set_dma(){
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 		SrcPages[i] = (unsigned int *)virtSrcPage[i];
 		memcpy(SrcPages[i], data+i*4*3*40, 40*3*4);
+		printf("%x %d" SrcPages[i],*SrcPages[i]);
 	}
 	printf("Building Control Blocks\n");
 	DMAControlBlock * cb_ptr = led_cb[0];	
-
+	
 	
 	unsigned int * BlankArray = (unsigned int*)(virtBlankSrcPage);
 	memset(BlankArray,0,1);
