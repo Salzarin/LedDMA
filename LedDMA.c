@@ -62,6 +62,9 @@ setPinMode(18, 2);
 setPinMode(20,0);
 setPinMode(21,0);
 
+setup_dma();
+set_dma();
+
 printf("Setting up the clock\n");
 setup_pwm_clock();
 set_pwm_clock(1,6,0);
@@ -71,8 +74,7 @@ setup_pwm();
 setPwm();
 printf("Finished Setting up PWM\n");
 
-setup_dma();
-set_dma();
+
 
 
 
