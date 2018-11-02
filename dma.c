@@ -110,6 +110,9 @@ int set_dma(){
 		cb_ptr++;
 	}
 	
+	
+	
+	
 	wait_cb = (DMAControlBlock *)(virtwaitCbPage);
 	
 	cb_ptr--;
