@@ -103,10 +103,10 @@ int set_dma(){
 	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	
-	//for(int i = 0; i<(led/100); i++){
+	for(int i = 0; i<(led/50); i++){
 	makeVirtPhysPage(&virtCbPage[0], &physCbPage[0]);
 	led_cb[0] = (DMAControlBlock *)virtCbPage[0];
-	//}
+	}
 	
 	DMAControlBlock * cb_ptr = led_cb[0];	
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
@@ -116,7 +116,7 @@ int set_dma(){
 		
 	for(int i = 0; i<(3*led);i++){
 		if(!(i%150) && i!=0){
-			makeVirtPhysPage(&virtCbPage[i/150], &physCbPage[i/150]);
+			//makeVirtPhysPage(&virtCbPage[i/150], &physCbPage[i/150]);
 			led_cb[i/150] = (DMAControlBlock *)virtCbPage[i/150];
 			cb_ptr--;
 			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/150]));
