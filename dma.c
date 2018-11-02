@@ -83,7 +83,8 @@ int set_dma(){
 	makeVirtPhysPage(&virtSrcPage, &physSrcPage);
 	
 	
-
+	virtCbPage = malloc(4);
+	physCbPage = malloc(4);
 	makeVirtPhysPage(&virtCbPage[0], &physCbPage[0]);
 	
 	cb = (DMAControlBlock *)virtCbPage[0];
