@@ -110,7 +110,7 @@ int set_dma(){
 	
 	DMAControlBlock * cb_ptr = led_cb[0];	
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
-	memcpy(srcArray, data, (led+wait_time)*3*4);
+	memcpy(srcArray, data, (led+1)*3*4);
 	uint32_t physDest = 0x7E20C018;
 	
 		
@@ -146,7 +146,7 @@ int set_dma(){
 	
 	for(int i = 0; i<wait_time;i++){
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
-		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i+3*led));
+		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+3*led));
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;
