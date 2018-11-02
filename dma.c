@@ -94,7 +94,7 @@ int set_dma(){
 
 	
 	
-	printf("Destination Data: %x\n",(uint32_t)(pwm+6));
+	printf("Destination Data: %x\n",(uint32_t)(0x20101000+0x18));
 
 	*(dma_channel +320+0xff0/4)|= (1<<5);
 	*(dma_channel)  |= (1<<31);
