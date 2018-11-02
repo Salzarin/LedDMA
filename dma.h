@@ -45,7 +45,7 @@ typedef struct DMAControlBlock{
 void *virtSrcPage, *physSrcPage;
 void *virtDestPage, *physDestPage;
 
-void **virtCbPage, **physCbPage;
+void *virtCbPage[40], *physCbPage[40];
 
 DMAControlBlock *cb;
 
