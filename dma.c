@@ -79,7 +79,7 @@ int set_dma(){
 	unsigned int* dest = virtDestPage;
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
 	memcpy(srcArray, data, led*3*4);
-	uint32_t physDest = virtTophys(dest);
+	uint32_t physDest = 0x2020C000+0x18;
 	for(int i = 0; i<(3*led);i++){
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
 		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i));
