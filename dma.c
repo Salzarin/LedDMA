@@ -54,7 +54,7 @@ unsigned int makeWord(unsigned char led){
 
 
 int set_dma(){
-	unsigned int led = 1;
+	unsigned int led = 100;
 	unsigned int wait_time = 20;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
@@ -63,11 +63,11 @@ int set_dma(){
 	
 	unsigned int * data_ptr = data;
 	for(int i = 0; i<led;i++){
-		*data_ptr = makeWord(0xFF);
+		*data_ptr = makeWord(0x00);
 		data_ptr++;
-		*data_ptr = makeWord(0xFF);
+		*data_ptr = makeWord(0x00);
 		data_ptr++;
-		*data_ptr = makeWord(0xFF);
+		*data_ptr = makeWord(0x00);
 		data_ptr++;
 	}
 	
@@ -134,7 +134,7 @@ int set_dma(){
 		//freeVirtPhysPage(virtCbPage);
 		//freeVirtPhysPage(virtDestPage);
 		//freeVirtPhysPage(virtSrcPage);
-		//free(data);
+		free(data);
 
 return 0;
 }
