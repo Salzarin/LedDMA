@@ -49,7 +49,7 @@ void **virtCbPage, **physCbPage;
 void *virtwaitCbPage, *physwaitCbPage;
 
 
-DMAControlBlock *led_cb[20];
+DMAControlBlock *led_cb;
 DMAControlBlock *wait_cb;
 
 void setup_dma();
