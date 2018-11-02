@@ -102,7 +102,7 @@ for (int j= 0; j<(led/40); j++){
 	
 	
 	for(int i = 0; i<((led/40)+1); i++){
-		printf("Page #d\n", i);
+		printf("Page %d\n", i);
 		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
 		makeVirtPhysPage(&virtSrcPage[i], &physSrcPage[i]);
 		srcArray[i] = (unsigned int*)virtSrcPage;
