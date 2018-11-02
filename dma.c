@@ -89,7 +89,7 @@ int set_dma(){
 	cb = (DMAControlBlock *)virtCbPage;
 	DMAControlBlock * cb_ptr = cb;	
 	unsigned int* dest = virtDestPage;
-	unsigned int * srcArray = (unsigned int*)virtSrcPage;
+	unsigned int * srcArray = (unsigned int*)virtSrcPage[0];
 	memcpy(srcArray, data, (led+wait_time)*3*4);
 	uint32_t physDest = 0x7E20C018;
 	for(int i = 0; i<(3*led);i++){
