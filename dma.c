@@ -105,7 +105,7 @@ int set_dma(){
 	
 	*(dma_channel+1) = (uint32_t) physCbPage ;
 	*(dma_channel+8) |= 0x7;
-	*(dma+320) |=(1<<28)|(1<<29)| 0x1;
+	*(dma_channel) |=(1<<28)|(1<<29)| 0x1;
 	//*(dma_channel) =0x10880001;
 for(int i = 0 ; i<3; i++){
 	
