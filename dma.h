@@ -47,8 +47,8 @@ void *virtDestPage, *physDestPage;
 
 void **virtCbPage, **physCbPage;
 
-DMAControlBlock *cb;
-
+DMAControlBlock *led_cb;
+DMAControlBlock *wait_cb;
 
 void setup_dma();
 int set_dma();
