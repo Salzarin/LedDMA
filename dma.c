@@ -105,7 +105,7 @@ for (int j= 0; j<(led/40); j++){
 		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
 		makeVirtPhysPage(&virtSrcPage[i], &physSrcPage[i]);
 		srcArray[i] = (unsigned int*)virtSrcPage;
-		memcpy(srcArray[i], data+i*4*3*40, (led+1)*3*4);
+		memcpy(srcArray[i], data+i*4*3*40, 40*3*4);
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 	}
 	
