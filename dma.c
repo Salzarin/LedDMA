@@ -143,7 +143,7 @@ int set_dma(){
 	usleep(100);
 	*(dma_channel) |=(3<<1) | (1<<8);
 	
-	*(dma_channel+1) = (uint32_t) virtTophys(cb) ;
+	*(dma_channel+1) = (uint32_t) virtTophys(led_cb) ;
 	*(dma_channel+8) |= 0x7;
 	*(dma_channel) |=(1<<28)|(1<<29)| 0x1;
 	//*(dma_channel) =0x10880001;
