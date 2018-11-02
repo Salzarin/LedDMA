@@ -63,12 +63,22 @@ int set_dma(){
 	
 	unsigned int * data_ptr = data;
 	for(int i = 0; i<led;i++){
+		if(led > 25){
 		*data_ptr = makeWord(0xFF);
 		data_ptr++;
 		*data_ptr = makeWord(0x00);
 		data_ptr++;
 		*data_ptr = makeWord(0x00);
 		data_ptr++;
+		}
+		else{
+		*data_ptr = makeWord(0x00);
+		data_ptr++;
+		*data_ptr = makeWord(0xFF);
+		data_ptr++;
+		*data_ptr = makeWord(0x00);
+		data_ptr++;
+		}
 	}
 	
 	for(int i = 0; i<wait_time;i++){
