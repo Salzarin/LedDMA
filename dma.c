@@ -66,8 +66,6 @@ int set_dma(){
 	
 	unsigned int * data_ptr = data;
 
-for (int j= 0; j<(led/40); j++){
-	
 	for(int i = 0; i<led;i++){
 		if(i > 50){
 		*data_ptr = makeWord(0xFF);
@@ -94,7 +92,6 @@ for (int j= 0; j<(led/40); j++){
 		data_ptr++;
 		}
 	}
-}
 
 
 
@@ -124,7 +121,7 @@ for (int j= 0; j<(led/40); j++){
 			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
 			printf("Link to next block: %x %x\n",(uint32_t)led_cb[i/120], virtTophys(led_cb[i/150]));
 			cb_ptr = led_cb[i/120];
-			srcData = (unsigned int *)virtSrcPage[0];
+			srcData = (unsigned int *)virtSrcPage[1];
 			printf("Data Src to next block: %x %x\n", (uint32_t)srcData ,virtTophys(srcData));
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
