@@ -10,7 +10,7 @@
 #include <string.h>
 
 volatile unsigned int *dma;
-unsigned int *data;
+unsigned int **data;
 uintptr_t virtTophys(void* virt);
 void freeVirtPhysPage(void* virtAddr);
 void makeVirtPhysPage(void** virtAddr, void** physAddr);

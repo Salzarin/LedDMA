@@ -58,10 +58,11 @@ int set_dma(){
 	unsigned int wait_time = 200;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
-	data = malloc((led+1)*3*4);
+	data = malloc(4*led/40);
+	data[0] = malloc((led+1)*3*4);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
-	unsigned int * data_ptr = data;
+	unsigned int * data_ptr = data[0];
 	for(int i = 0; i<led;i++){
 		if(i > 50){
 		*data_ptr = makeWord(0xFF);
