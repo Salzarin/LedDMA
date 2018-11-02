@@ -90,7 +90,7 @@ int set_dma(){
 		cb_ptr++;
 	}
 	cb_ptr--;	
-	cb_ptr->NEXTCONBK = NULL;
+	cb_ptr->NEXTCONBK = virtTophys(cb);
 
 	
 	
