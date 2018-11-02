@@ -102,7 +102,7 @@ int set_dma(){
 		
 	for(int i = 0; i<(3*led);i++){
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
-		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i+j*3*100));
+		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i));
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;
