@@ -103,7 +103,7 @@ for (int j= 0; j<(led/40); j++){
 
 
 	
-	led_cb = malloc(4*(1+led/40));
+	
 	
 	
 	
