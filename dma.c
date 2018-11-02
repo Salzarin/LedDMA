@@ -129,6 +129,7 @@ int set_dma(){
 			led_cb[i/120] = (DMAControlBlock *)virtCbPage[i/120];
 			cb_ptr--;
 			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
+			printf("Link to next block: %x\n", virtTophys(led_cb[i/150]));
 			cb_ptr = led_cb[i/120];
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
