@@ -42,7 +42,7 @@ typedef struct DMAControlBlock{
 
 
 
-void *virtSrcPage, *physSrcPage;
+void **virtSrcPage, **physSrcPage;
 void *virtBlankSrcPage, *physBlankSrcPage;
 void *virtDestPage, *physDestPage;
 

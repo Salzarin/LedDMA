@@ -96,7 +96,7 @@ for (int j= 0; j<(led/40); j++){
 }
 	virtSrcPage = malloc(4*(1+led/40));
 	physSrcPage = malloc(4*(1+led/40));
-	makeVirtPhysPage(&virtSrcPage, &physSrcPage);
+	
 	
 	makeVirtPhysPage(&virtBlankSrcPage, &physBlankSrcPage);
 	
@@ -110,14 +110,20 @@ for (int j= 0; j<(led/40); j++){
 	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	
+	
+	unsigned int ** srcArray = malloc(4*led/40); (unsigned int*)virtSrcPage;
+	
+	
 	for(int i = 0; i<((led/40)+1); i++){
 		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
+		makeVirtPhysPage(&virtSrcPage[i], &physSrcPage[i]);
+		srcArray[i] = (unsigned int*)virtSrcPage;
+		memcpy(srcArray[i], data[i], (led+1)*3*4);
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 	}
 	
 	DMAControlBlock * cb_ptr = led_cb[0];	
-	unsigned int * srcArray = (unsigned int*)virtSrcPage;
-	memcpy(srcArray, data, (led+1)*3*4);
+
 	
 	unsigned int * BlankArray = (unsigned int*)(virtBlankSrcPage);
 	memset(BlankArray,0,1);
