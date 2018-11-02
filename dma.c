@@ -52,9 +52,10 @@ unsigned int makeWord(unsigned char led){
 	return word;
 }
 
+
 int set_dma(){
 	unsigned int led = 1;
-	unsigned int wait_time = 100000;
+	unsigned int wait_time = 20;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
 	data = malloc((led+wait_time)*3*4);
@@ -71,11 +72,11 @@ int set_dma(){
 	}
 	
 	for(int i = 0; i<wait_time;i++){
-		*data_ptr = makeWord(0x00);
+		*data_ptr = 0x0);
 		data_ptr++;
-		*data_ptr = makeWord(0x00);
+		*data_ptr = 0x0;
 		data_ptr++;
-		*data_ptr = makeWord(0x00);
+		*data_ptr = 0x0;
 		data_ptr++;
 	}
 	
