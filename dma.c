@@ -103,8 +103,6 @@ for (int j= 0; j<(led/40); j++){
 
 
 	
-	virtCbPage = malloc(4*(1+led/40));
-	physCbPage = malloc(4*(1+led/40));
 	led_cb = malloc(4*(1+led/40));
 	
 	
