@@ -52,6 +52,8 @@ void *virtwaitCbPage, *physwaitCbPage;
 DMAControlBlock *led_cb[256];
 DMAControlBlock *wait_cb;
 
+unsigned int * SrcPages[256];
+
 void setup_dma();
 int set_dma();
 unsigned int makeWord(unsigned char led);
