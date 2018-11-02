@@ -90,7 +90,7 @@ int set_dma(){
 	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	
-	led_cb = (DMAControlBlock *)virtCbPage;
+	led_cb = (DMAControlBlock *)virtCbPage[0];
 	DMAControlBlock * cb_ptr = led_cb;	
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
 	memcpy(srcArray, data, (led+wait_time)*3*4);
