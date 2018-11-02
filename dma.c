@@ -153,7 +153,7 @@ int set_dma(){
 		//freeVirtPhysPage(virtCbPage);
 		//freeVirtPhysPage(virtDestPage);
 		//freeVirtPhysPage(virtSrcPage);
-		free(data);
+		//free(data);
 
 return 0;
 }
