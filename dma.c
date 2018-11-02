@@ -59,13 +59,13 @@ int set_dma(){
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
 	data = malloc(4*led/40);
-	data[0] = malloc(40*3*4);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
 	unsigned int * data_ptr = data[0];
 
 
 for (int j= 0; j<(led/40); j++){
+	data[j] = malloc(40*3*4);
 	data_ptr = data[j/40];
 	for(int i = 0; i<led;i++){
 		if(i > 50){
