@@ -106,7 +106,7 @@ int set_dma(){
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;
-		if(i%300 && i!=0){
+		if(!(i%300) && i!=0){
 		makeVirtPhysPage(&virtCbPage[i/300], &physCbPage[i/300]);
 		cb_ptr = (DMAControlBlock *)virtCbPage[i/300];
 		cb_ptr->NEXTCONBK =(uint32_t)(virtTophys(cb_ptr+1));
