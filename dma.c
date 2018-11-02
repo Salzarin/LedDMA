@@ -88,12 +88,16 @@ int set_dma(){
 	virtCbPage = malloc(4*(1+led/100));
 	physCbPage = malloc(4*(1+led/100));
 	led_cb = malloc(4*(1+led/100));
-	makeVirtPhysPage(&virtCbPage[0], &physCbPage[0]);
+	
 	
 	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	
-	led_cb[0] = (DMAControlBlock *)virtCbPage[0];
+	for(int i = 0; i<(led/100); i++){
+		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
+		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
+	}
+	
 	DMAControlBlock * cb_ptr = led_cb[0];	
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
 	memcpy(srcArray, data, (led+wait_time)*3*4);
