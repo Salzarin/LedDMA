@@ -95,7 +95,7 @@ for (int j= 0; j<(led/40); j++){
 
 	
 	
-	makeVirtPhysPage(&virtBlankSrcPage, &physBlankSrcPage);
+	
 	
 
 	virtSrcPage = malloc(4*(1+led/40));
@@ -108,7 +108,7 @@ for (int j= 0; j<(led/40); j++){
 	
 	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
-	
+	makeVirtPhysPage(&virtBlankSrcPage, &physBlankSrcPage);
 	
 	unsigned int ** srcArray = malloc(4*led/40);
 	
