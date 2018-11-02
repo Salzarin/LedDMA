@@ -61,6 +61,9 @@ int set_dma(){
 	data = malloc(4*3*led);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
+	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
+	makeVirtPhysPage(&virtBlankSrcPage, &physBlankSrcPage);
+	
 	unsigned int * data_ptr = data;
 
 for (int j= 0; j<(led/40); j++){
@@ -107,8 +110,7 @@ for (int j= 0; j<(led/40); j++){
 	
 	
 	
-	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
-	makeVirtPhysPage(&virtBlankSrcPage, &physBlankSrcPage);
+
 	
 	unsigned int ** srcArray = malloc(4*led/40);
 	
