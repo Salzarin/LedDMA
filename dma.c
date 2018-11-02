@@ -109,7 +109,7 @@ int set_dma(){
 		cb_ptr++;
 	}
 	
-	wait_cb = (DMAControlBlock *)(virtCbPage+1);
+	wait_cb = (DMAControlBlock *)(virtCbPage+4);
 	
 	cb_ptr--;
 	cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(wait_cb));
