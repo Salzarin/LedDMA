@@ -72,7 +72,7 @@ int set_dma(){
 	}
 	
 	for(int i = 0; i<wait_time;i++){
-		*data_ptr = 0x0);
+		*data_ptr = 0x0;
 		data_ptr++;
 		*data_ptr = 0x0;
 		data_ptr++;
