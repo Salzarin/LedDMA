@@ -116,7 +116,7 @@ for (int j= 0; j<(led/40); j++){
 	memset(BlankArray,0,1);
 	uint32_t physDest = 0x7E20C018;
 	
-		
+	unsigned int * srcData = srcArray[0];	
 	for(int i = 0; i<(3*led);i++){
 		if(!(i%120) && i!=0){
 			printf("%d %d\n", i, i/120);
@@ -126,9 +126,10 @@ for (int j= 0; j<(led/40); j++){
 			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
 			printf("Link to next block: %x\n", virtTophys(led_cb[i/150]));
 			cb_ptr = led_cb[i/120];
+			srcData = srcArray[i/120];
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
-		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i));
+		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcData+i%120));
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;
