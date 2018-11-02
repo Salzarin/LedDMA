@@ -94,15 +94,8 @@ int set_dma(){
 
 	
 	
-	printf("SrcArray Data: %x\t%x\t%x\n",srcArray[0],srcArray[1],srcArray[2]);
+	printf("Destination Data: %x\n",(uint32_t)(pwm+6));
 
-
-	printf("%x Initial Destination Value = %x\t %x\t%x\n", 
-			(unsigned int)srcArray,
-			*(uint32_t*)virtDestPage,
-			*(uint32_t*)(virtDestPage+4),
-			*(uint32_t*)(virtDestPage+8)
-			);
 	*(dma_channel +320+0xff0/4)|= (1<<5);
 	*(dma_channel)  |= (1<<31);
 	usleep(100);
@@ -112,7 +105,7 @@ int set_dma(){
 	
 	*(dma_channel+1) = (uint32_t) physCbPage ;
 	*(dma_channel+8) |= 0x7;
-	*(dma+320) |=(3<<1) | (1<<8)| (1<<28)|(1<<29)| 0x1;
+	//*(dma+320) |=(3<<1) | (1<<8)| (1<<28)|(1<<29)| 0x1;
 	//*(dma_channel) =0x10880001;
 for(int i = 0 ; i<3; i++){
 	
