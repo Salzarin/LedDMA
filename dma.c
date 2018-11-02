@@ -102,13 +102,14 @@ for (int j= 0; j<(led/40); j++){
 	
 	
 	for(int i = 0; i<((led/40)+1); i++){
+		printf("Page #d\n", i);
 		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
 		makeVirtPhysPage(&virtSrcPage[i], &physSrcPage[i]);
 		srcArray[i] = (unsigned int*)virtSrcPage;
 		memcpy(srcArray[i], data+i*4*3*40, 40*3*4);
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 	}
-	
+	printf("Building Control Blocks\n");
 	DMAControlBlock * cb_ptr = led_cb[0];	
 
 	
