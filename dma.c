@@ -54,7 +54,7 @@ unsigned int makeWord(unsigned char led){
 
 
 int set_dma(){
-	unsigned int led = 100;
+	unsigned int led = 150;
 	unsigned int wait_time = 200;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
@@ -86,7 +86,8 @@ int set_dma(){
 
 	
 	
-	makeVirtPhysPage(&virtCbPage, &physCbPage);
+	makeVirtPhysPage(&virtCbPage[0], &physCbPage[0]);
+	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	
 	led_cb = (DMAControlBlock *)virtCbPage;
