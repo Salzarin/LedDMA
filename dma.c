@@ -61,7 +61,7 @@ int set_dma(){
 	data = malloc(4*3*led);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
-data_ptr = data;
+	unsigned int * data_ptr = data;
 
 for (int j= 0; j<(led/40); j++){
 	
