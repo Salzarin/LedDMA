@@ -122,7 +122,7 @@ for (int j= 0; j<(led/40); j++){
 		if(!(i%120) && i!=0){
 			printf("%d %d\n", i, i/120);
 			//makeVirtPhysPage(&virtCbPage[i/150], &physCbPage[i/150]);
-			led_cb[i/120] = (DMAControlBlock *)virtCbPage[i/120];
+			//led_cb[i/120] = (DMAControlBlock *)virtCbPage[i/120];
 			cb_ptr--;
 			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
 			printf("Link to next block: %x %x\n",(uint32_t)led_cb[i/120], virtTophys(led_cb[i/150]));
