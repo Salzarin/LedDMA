@@ -94,8 +94,10 @@ for (int j= 0; j<(led/40); j++){
 		}
 	}
 }
-	
+	virtSrcPage = malloc(4*(1+led/40));
+	physSrcPage = malloc(4*(1+led/40));
 	makeVirtPhysPage(&virtSrcPage, &physSrcPage);
+	
 	makeVirtPhysPage(&virtBlankSrcPage, &physBlankSrcPage);
 	
 
