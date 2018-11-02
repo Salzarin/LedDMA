@@ -118,7 +118,7 @@ for(int i = 0 ; i<3; i++){
 			);
 }
 
-		//*(dma+320) &=~0x1;
+		*(dma_channel) &=~0x1;
 		//freeVirtPhysPage(virtCbPage);
 		//freeVirtPhysPage(virtDestPage);
 		//freeVirtPhysPage(virtSrcPage);
