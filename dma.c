@@ -80,7 +80,7 @@ int set_dma(){
 		data_ptr++;
 	}
 	
-	makeVirtPhysPage(&(virtSrcPage[0]), &(physSrcPage[0}));
+	makeVirtPhysPage(&virtSrcPage, &physSrcPage);
 	
 	makeVirtPhysPage(&virtCbPage, &physCbPage);
 	
