@@ -101,8 +101,7 @@ for (int j= 0; j<(led/40); j++){
 	
 	
 
-	virtSrcPage = malloc(4*(1+led/40));
-	physSrcPage = malloc(4*(1+led/40));
+
 	
 	virtCbPage = malloc(4*(1+led/40));
 	physCbPage = malloc(4*(1+led/40));
