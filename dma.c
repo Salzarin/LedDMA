@@ -99,7 +99,7 @@ for (int j= 0; j<(led/40); j++){
 
 	
 	unsigned int * srcArray[256];//malloc(4*led/40);
-	led_cb = malloc(4*led/40);
+	
 	
 	for(int i = 0; i<((led/40)); i++){
 		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
