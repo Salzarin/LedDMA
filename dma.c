@@ -56,7 +56,7 @@ int set_dma(){
 	unsigned int led = 1;
 	volatile unsigned int* dma_channel = dma+0x600/4;
 	data = malloc(led*3*4);
-	printf("Setting up DMA %x\n", (uint32_t)(virtTophys(dma_channel)));
+	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
 	unsigned int * data_ptr = data;
 	for(int i = 0; i<led;i++){
