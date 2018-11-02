@@ -95,6 +95,9 @@ int set_dma(){
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
 	memcpy(srcArray, data, (led+wait_time)*3*4);
 	uint32_t physDest = 0x7E20C018;
+	
+	
+	
 	for(int i = 0; i<(3*led);i++){
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
 		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcArray+i));
@@ -130,7 +133,7 @@ int set_dma(){
 	usleep(100);
 	*(dma_channel) |=(3<<1) | (1<<8);
 	
-	*(dma_channel+1) = (uint32_t) physCbPage ;
+	*(dma_channel+1) = (uint32_t) virtTophys(cb) ;
 	*(dma_channel+8) |= 0x7;
 	*(dma_channel) |=(1<<28)|(1<<29)| 0x1;
 	//*(dma_channel) =0x10880001;
