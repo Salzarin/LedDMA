@@ -86,7 +86,6 @@ int set_dma(){
 	
 	cb = (DMAControlBlock *)virtCbPage;
 	DMAControlBlock * cb_ptr = cb;	
-	unsigned int* dest = virtDestPage;
 	unsigned int * srcArray = (unsigned int*)virtSrcPage;
 	memcpy(srcArray, data, (led+wait_time)*3*4);
 	uint32_t physDest = 0x7E20C018;
@@ -129,16 +128,7 @@ int set_dma(){
 	*(dma_channel+8) |= 0x7;
 	*(dma_channel) |=(1<<28)|(1<<29)| 0x1;
 	//*(dma_channel) =0x10880001;
-for(int i = 0 ; i<3; i++){
-	
-	usleep(1000);
-		printf("%x Destination Value = %x\t %x\t%x\n", 
-			(unsigned int)srcArray,
-			*(uint32_t*)(virtDestPage),
-			*(uint32_t*)(virtDestPage+4),
-			*(uint32_t*)(virtDestPage+8)
-			);
-}
+
 
 		//*(dma_channel) &=~0x1;
 		//freeVirtPhysPage(virtCbPage);
