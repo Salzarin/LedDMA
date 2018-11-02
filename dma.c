@@ -104,6 +104,7 @@ for (int j= 0; j<(led/40); j++){
 		makeVirtPhysPage(&virtSrcPage[i], &physSrcPage[i]);
 		//memcpy(virtSrcPage[i], data+i*4*3*40, 40*3*4);
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
+		SrcPages[i] = (unsigned int *)virtSrcPage[i];
 	}
 	printf("Building Control Blocks\n");
 	DMAControlBlock * cb_ptr = led_cb[0];	
@@ -123,11 +124,11 @@ for (int j= 0; j<(led/40); j++){
 			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
 			printf("Link to next block: %x %x\n",(uint32_t)led_cb[i/120], virtTophys(led_cb[i/150]));
 			cb_ptr = led_cb[i/120];
-			srcData = (unsigned int *)virtSrcPage[i];
-			printf("Data Src to next block: %x %x\n", (uint32_t)virtSrcPage[i] ,virtTophys(virtSrcPage[i]));
+			srcData = (unsigned int *)virtSrcPage[i/120];
+			printf("Data Src to next block: %x %x\n", (uint32_t)SrcPages[i/120] ,virtTophys(SrcPages[i/120]));
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
-		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(virtSrcPage[0]));
+		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(SrcPages[i/120]));
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;
