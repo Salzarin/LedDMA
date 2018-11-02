@@ -54,7 +54,7 @@ unsigned int makeWord(unsigned char led){
 
 int set_dma(){
 	unsigned int led = 1;
-	unsigned int wait_time = 20;
+	unsigned int wait_time = 100;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
 	data = malloc((led+wait_time)*3*4);
