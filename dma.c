@@ -54,7 +54,7 @@ unsigned int makeWord(unsigned char led){
 
 int set_dma(){
 	unsigned int led = 1;
-	unsigned int wait_time = 100;
+	unsigned int wait_time = 100000;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
 	data = malloc((led+wait_time)*3*4);
@@ -106,7 +106,7 @@ int set_dma(){
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;
-		cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(cb_ptr+1));
+		cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(cb_ptr));
 		cb_ptr++;
 	}
 	
