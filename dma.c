@@ -95,9 +95,9 @@ int set_dma(){
 	
 
 	
-	virtCbPage = malloc(4*(1+led/100));
-	physCbPage = malloc(4*(1+led/100));
-	led_cb = malloc(4*(1+led/100));
+	virtCbPage = malloc(4*(1+led/25));
+	physCbPage = malloc(4*(1+led/25));
+	led_cb = malloc(4*(1+led/25));
 	
 	
 	
