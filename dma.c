@@ -124,7 +124,7 @@ int set_dma(){
 	uint32_t physDest = 0x7E20C018;
 	
 	unsigned int * srcData = (unsigned int *)virtSrcPage[0];
-	unsigned int byte_per_page = byte_per_led * LED_PER_PAGE;
+	unsigned int byte_per_page = byte_per_led * LED_PER_PAGE / 4;
 	printf("Total Bytes Per Page: %d\n",byte_per_page);
 	printf("Total Page of Control Blocks: %d\n",byte_per_led*led/4);
 	for(int i = 0; i<(byte_per_led*led/4);i++){
