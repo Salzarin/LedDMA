@@ -89,16 +89,12 @@ void makePulse(unsigned int head){
 		setColor(((0xFF)<<16)|(0xFF-color),pos);
 		pos--;
 		pos = pos>150?150:pos;
-
-
-
-
 }
 
 
 
 
-pos--;
+pos++;
 
 
 
