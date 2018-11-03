@@ -61,7 +61,7 @@ unsigned int HSLtoRGB(HSL hsl){
 	
 }
 
-void RGBtoHSL(unsigned int color, HSL hsl){
+void RGBtoHSL(unsigned int color, HSL* hsl){
 	float r = (color >> 16) & 0xFF;
 	float g = (color >> 8) & 0xFF;
 	float b = color & 0xFF;
