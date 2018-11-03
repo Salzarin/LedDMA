@@ -136,7 +136,7 @@ int set_dma(){
 			printf("Data Src to next block: %x %x\n", (uint32_t)(srcData) ,virtTophys(srcData));
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
-		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcData));
+		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcData+i%120));
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;
