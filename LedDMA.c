@@ -87,7 +87,7 @@ int j;
 while(1){
 
 //printf("%d %d\r", readPin(20), readPin(21));
-printf("%x\r", *(dma+320));
+printf("%d\r", j);
 
 
 for(int i = 0; i<150; i++){
@@ -101,7 +101,7 @@ execute_dma();
 j++;
 j = j%150;
 
-usleep(10000);
+usleep(100000);
 }
 //pthread_join(thread_id,NULL);
 return 0;
