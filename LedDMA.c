@@ -13,6 +13,7 @@
 #include "gpio.h"
 #include "pwm.h"
 #include "dma.h"
+#include "color.h"
 
 void reset(){
 	
