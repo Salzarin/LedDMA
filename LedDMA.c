@@ -87,10 +87,12 @@ while(1){
 for(int i = 0; i<150; i++){
 setColor(0x00,i);
 }
-makePulse(10);
+
+setColor(0xFFFF00 + j,5);
+//makePulse(10);
 
 j++;
-j = j%150;
+j = j%255;
 usleep(50000);
 }
 //pthread_join(thread_id,NULL);
