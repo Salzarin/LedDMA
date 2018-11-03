@@ -39,12 +39,12 @@ void INThandler(int test){
 void makePulse(unsigned int head){
 	int tail_length = 10;
 	for(int i = 0; i<tail_length;i++){
-		char color = 0xFF - i*0xFF/tail_length;
+		char color = 0xFF - i*0x19;
 		char red = color;
 		char green = color - red;
 		int pos = head-i;
 		pos = pos>150 ? 150 : pos;
-		setColor(0xFF0000,pos);
+		setColor(red<<16,pos);
 	}
 
 }
