@@ -64,8 +64,8 @@ void shutdown_dma(){
 
 
 int set_dma(){
-	unsigned int led = 80;
-	unsigned int wait_time = 100;
+	unsigned int led = 150;
+	unsigned int wait_time = 200;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
 	data = malloc(4*3*led);
