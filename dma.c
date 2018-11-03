@@ -66,13 +66,15 @@ void setColor(unsigned int color, int led_number){
 	unsigned int page_number = led_number/40;
 	LED_COLOR * srcData = (LED_COLOR *)virtSrcPage[page_number];
 	generateWave(srcData+led_number%40,color);
+	*(dma_channel) |=(3<<1) | (1<<8);
+	
 }
 
 void generateWave(LED_COLOR * led, unsigned int color){
 	led->green = makeWord((color>>8) & 0xFF);
 	led->blue = makeWord((color) & 0xFF);
 	led->red = makeWord((color>>16) & 0xFF);
-
+	
 }
 
 
@@ -172,7 +174,7 @@ int set_dma(){
 	
 	
 	cb_ptr--;	
-	cb_ptr->NEXTCONBK = virtTophys(led_cb[0]);
+	cb_ptr->NEXTCONBK = 0;virtTophys(led_cb[0]);
 
 	
 	
