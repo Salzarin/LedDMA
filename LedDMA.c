@@ -57,22 +57,19 @@ void makePulse(unsigned int head, int tail_length){
 	RGBtoHSL(0x0000FF, &blue);
 	
 	for(int i = 0; i<tail_length;i++){
-		color = i*0xFF/tail_length;
-		//printf("%x |", (0xFF<<16)|(yellow<<8));
+
 		setColor(interpolateColor(red,green,tail_length,i),pos);
 		pos--;
 		pos = pos>150?150:pos;
 	}
 	for(int i = 0; i<tail_length;i++){
-		color = i*0xFF/tail_length;
-		//printf("%x |", (0xFF<<16)|(yellow<<8));
+
 		setColor(interpolateColor(green,blue,tail_length,i),pos);
 		pos--;
 		pos = pos>150?150:pos;
 	}
 	for(int i = 0; i<tail_length;i++){
-		color = i*0xFF/tail_length;
-		//printf("%x |", (0xFF<<16)|(yellow<<8));
+
 		setColor(interpolateColor(blue,red,tail_length,i),pos);
 		pos--;
 		pos = pos>150?150:pos;
@@ -139,7 +136,7 @@ setColor(0xFF,i);
 
 //solidColor(interpolateColor(red,green,150,j));
 solidColor(0);
-makePulse(j, 50);
+makePulse(30, 10);
 
 j++;
 j = j%150;
