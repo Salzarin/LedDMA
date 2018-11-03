@@ -186,7 +186,7 @@ int set_dma(){
 	
 	
 	cb_ptr--;	
-	cb_ptr->NEXTCONBK = virtTophys(virtTophys(led_cb[0]);
+	cb_ptr->NEXTCONBK = (uint32_t)virtTophys(led_cb[0]);
 
 	
 	
