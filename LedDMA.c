@@ -99,7 +99,7 @@ setColor(0xFFFF00,j);
 //makePulse(10);
 
 j++;
-j = j%255;
+j = j%150;
 
 usleep(10000);
 }
