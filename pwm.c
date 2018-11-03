@@ -58,7 +58,7 @@ void set_pwm_clock(unsigned int type, unsigned int IDIV, unsigned int FDIV){
 
 	*(pwm_clock + 40) = (0x5a << 24) | (1<<5);
 	usleep(10);
-	*(pwm_clock+41) = (0x5a<<24) | (IDIV<<13) | FDIV ;
+	*(pwm_clock+41) = (0x5a<<24) | (IDIV<<12) | FDIV ;
 	usleep(10);
 	*(pwm_clock + 40) = (0x5a << 24) | type;
 	usleep(10);
