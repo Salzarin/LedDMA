@@ -142,7 +142,7 @@ makePulse(j);
 j++;
 j = j%150;
 
-usleep(100000);
+usleep(10000);
 }
 //pthread_join(thread_id,NULL);
 return 0;
