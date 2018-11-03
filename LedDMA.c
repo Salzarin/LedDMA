@@ -97,14 +97,19 @@ while(1){
 }
 */
 printf("starting loop\n");
-int i = 0;
+
+
+for(int i = 0; i<150; i++){
+setColor(0x00,i);
+}
+
 while(1){
 
 //printf("%d %d\r", readPin(20), readPin(21));
 printf("Shutting down %d\r", i);
-setColor(0x00,i);
-i++;
-i = i%150;
+
+
+
 sleep(1);
 }
 //pthread_join(thread_id,NULL);
