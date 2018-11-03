@@ -46,6 +46,7 @@ void makePulse(unsigned int head){
 		char green = color - red;
 		int pos = head-i;
 		pos = pos>150 ? 150 : pos;
+		printf("%d %d", red, green);
 		setColor((red<<16)|(green<<8),pos);
 	}
 
