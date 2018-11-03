@@ -40,7 +40,6 @@ void INThandler(int test){
 
 
 void solidColor(unsigned int color){
-	
 	for(int i = 0; i<150; i++){
 		setColor(color,i);
 	}
@@ -98,16 +97,14 @@ void makePulse(unsigned int head, int tail_length){
 		pos--;
 		pos = pos>150?150:pos;
 }
-
-
-
-
-pos++;
-
-
-
+	pos++;
 	setColor(0,pos);
 }
+
+unsigned int fadeIn(unsigned int fromColor, unsigned int toColor, unsigned int increment, unsigned int pos){
+	return (fromColor+pos*toColor/increment);
+}	
+
 
 int main(){
 
@@ -136,10 +133,7 @@ set_dma();
 printf("starting loop\n");
 
 
-for(int i = 0; i<150; i++){
-setColor(0x00,i);
-}
-
+solidColor(0x0);
 int j = 20;
 
 while(1){
@@ -153,7 +147,10 @@ setColor(0xFF,i);
 }
 */
 //setColor(0xFFFF00,j);
-solidColor(0x00FF00);
+
+
+solidColor(fadeIn(0x0000FF,0xFF0000,150,j));
+
 //makePulse(j, 20);
 
 j++;
