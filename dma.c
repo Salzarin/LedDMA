@@ -180,7 +180,7 @@ int set_dma(){
 	
 	
 	for(int i = 0; i<wait_time;i++){
-		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
+		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1)|(1<<3);
 		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(BlankArray));
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
