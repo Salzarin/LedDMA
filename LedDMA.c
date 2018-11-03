@@ -75,15 +75,17 @@ set_dma();
 
 printf("starting loop\n");
 
-
+/*
 for(int i = 0; i<150; i++){
 setColor(0x00,i);
 }
 int j;
+*/
 while(1){
 
-printf("%d %d\r", readPin(20), readPin(21));
-
+//printf("%d %d\r", readPin(20), readPin(21));
+printf("%x\r", *(dma+320));
+/*
 for(int i = 0; i<150; i++){
 setColor(0xFF,i);
 }
@@ -93,6 +95,7 @@ setColor(0xFF0000 + j,5);
 
 j++;
 j = j%255;
+*/
 usleep(1000000);
 }
 //pthread_join(thread_id,NULL);
