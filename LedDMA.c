@@ -153,7 +153,7 @@ setColor(0xFF,i);
 }
 */
 //setColor(0xFFFF00,j);
-solidColor(0xFF00FF);
+solidColor(0x00FF00);
 //makePulse(j, 20);
 
 j++;
