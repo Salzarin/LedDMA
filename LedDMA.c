@@ -113,7 +113,7 @@ void makePulse(unsigned int head, int tail_length){
 int main(int argc, char **argv){
 
 
-int mode =
+
 
 setup_gpio();
 
