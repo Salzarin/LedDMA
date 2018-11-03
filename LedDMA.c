@@ -101,57 +101,6 @@ void makePulse(unsigned int head, int tail_length){
 	setColor(0,pos);
 }
 
-unsigned int fadeIn(unsigned int fromColor, unsigned int toColor, unsigned int increment, unsigned int pos){
-
-	return (fromColor-pos*fromColor/increment + toColor+pos*toColor/increment);
-}	
-
-void RGBtoHSL(unsigned int color, float * H, float * S, float * L){
-	float r = (color >> 16) & 0xFF;
-	float g = (color >> 8) & 0xFF;
-	float b = color & 0xFF;
-	
-	r = r/255.0;
-	g = g/255.0;
-	b = b/255.0;
-	
-	float rgb[3] = {r,g,b};
-	
-	float cMax = r;
-	float cMin = r;
-	int tMax = 0;
-	int tMin = 4;
-	for(int i = 0; i<3;i++){
-		tMax = rgb[i]>cMax ? i : tMax;
-		cMax = rgb[i]>cMax ? rgb[i] : cMax;
-		tMin = rgb[i]<cMin ? i : tMin;
-		cMin = rgb[i]<cMin ? rgb[i] : cMin;		
-	}
-	
-	float delta = cMax-cMin;
-	*L = (cMax+cMin)/2;
-	
-	
-	if( delta == 0){
-		*H = 0;
-		*S = 0;
-	}
-	else{
-		switch(tMax){
-			case 0:
-				*H = 60 *fmodf(((g-b)/delta),6);
-				break;
-			case 1:
-				*H = 60 *(((b-r)/delta)+2);
-				break;
-			case 2:
-				*H = 60 *(((r-g)/delta)+4);
-				break;	
-		}
-		*S = delta/(1.0 - fabs(2*(*L)-1));
-	}
-		
-}
 
 
 
@@ -185,6 +134,12 @@ printf("starting loop\n");
 solidColor(0x0);
 int j = 20;
 
+HSL red;
+HSL green;
+
+RGBtoHSL(0xFF0000,red);
+RGBtoHSL(0x00FF00,green);
+
 while(1){
 
 //printf("%d %d\r", readPin(20), readPin(21));
@@ -198,7 +153,7 @@ setColor(0xFF,i);
 //setColor(0xFFFF00,j);
 
 
-solidColor(fadeIn(0x0000FF,0xFF0000,150,j));
+solidColor(interpolateColor(red,green,150,j));
 
 //makePulse(j, 20);
 
