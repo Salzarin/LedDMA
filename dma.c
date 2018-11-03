@@ -105,7 +105,7 @@ int set_dma(){
 
 
 
-	for(int i = 0; i=<((led/40)); i++){
+	for(int i = 0; i<=((led/40)); i++){
 		printf("Page %d\n", i);
 		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
 		makeVirtPhysPage(&virtSrcPage[i], &physSrcPage[i]);
