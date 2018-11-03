@@ -51,6 +51,7 @@ void makePulse(unsigned int head, int tail_length){
 	HSL red;
 	HSL green;
 	HSL blue;
+	HSL test;
 	
 	RGBtoHSL(0xFF0000, &red);
 	RGBtoHSL(0x00FF00, &green);
@@ -65,7 +66,8 @@ void makePulse(unsigned int head, int tail_length){
 	for(int i = 0; i<tail_length;i++){
 
 		setColor(interpolateColor(green,blue,tail_length,i),pos);
-		printf("%x | ", interpolateColor(green,blue,tail_length,i));
+		RGBtoHSL(interpolateColor(green,blue,tail_length,i),test);
+		printf("%f, %f, %f | ", test.H, test.S, test.L);
 		pos--;
 		pos = pos>150?150:pos;
 	}
