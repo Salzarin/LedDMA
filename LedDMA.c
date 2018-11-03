@@ -95,7 +95,7 @@ setColor(0xFF,i);
 }
 
 setColor(0xFFFF00,j);
-execute_dema();
+execute_dma();
 //makePulse(10);
 
 j++;
