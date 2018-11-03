@@ -64,7 +64,7 @@ void shutdown_dma(){
 
 
 int set_dma(){
-	unsigned int led = 40;
+	unsigned int led = 80;
 	unsigned int wait_time = 100;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int total_led = led+wait_time;
@@ -96,7 +96,7 @@ int set_dma(){
 		else{
 		*data_ptr = makeWord(0xFF);
 		data_ptr++;
-		*data_ptr = makeWord(0xFF);
+		*data_ptr = makeWord(0x00);
 		data_ptr++;
 		*data_ptr = makeWord(0xFF);
 		data_ptr++;
