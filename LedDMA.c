@@ -104,7 +104,8 @@ while(1){
 
 setColor(0x00,i);
 i++;
-usleep(1000);
+i = i%150;
+sleep(1000);
 }
 //pthread_join(thread_id,NULL);
 return 0;
