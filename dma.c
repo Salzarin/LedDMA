@@ -77,7 +77,7 @@ void setColor(unsigned int color, int led_number){
 	//*(dma_channel) &= ~0x1;
 	unsigned int page_number = led_number/LED_PER_PAGE;
 	LED_COLOR * srcData = (LED_COLOR *)virtSrcPage[page_number];
-	//generateWave(srcData+led_number%40,color);
+	generateWave(srcData+led_number%40,color);
 }
 
 void generateWave(LED_COLOR * led, unsigned int color){
