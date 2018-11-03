@@ -44,7 +44,7 @@ void makePulse(unsigned int head){
 		char green = color - red;
 		int pos = head-i;
 		pos = pos>150 ? 150 : pos;
-		setColor(0xFF8000,pos);
+		setColor(0xFFFF33,pos);
 	}
 
 }
