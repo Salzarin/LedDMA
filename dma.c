@@ -70,7 +70,7 @@ void execute_dma(){
 	*(dma_channel)  |= (1<<30);
 	usleep(10);
 	*(dma_channel) |=(3<<1) | (1<<8);
-	
+	printf("%x\n",(uint32_t) virtTophys(led_cb[0]))
 	*(dma_channel+1) = (uint32_t) virtTophys(led_cb[0]) ;
 	*(dma_channel+8) |= 0x7;
 	*(dma_channel) |=(1<<28)|(1<<29)| 0x1;
