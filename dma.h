@@ -10,7 +10,7 @@
 #include <string.h>
 
 
-#define LED_PER_PAGE 40
+#define LED_PER_PAGE 20
 
 
 typedef struct LED_COLOR{
