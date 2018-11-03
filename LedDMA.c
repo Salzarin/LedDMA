@@ -81,7 +81,7 @@ printf("starting loop\n");
 for(int i = 0; i<150; i++){
 setColor(0x00,i);
 }
-execute_dma();
+
 int j = 20;
 
 while(1){
@@ -95,7 +95,6 @@ setColor(0xFF,i);
 }
 
 setColor(0xFFFF00,j);
-execute_dma();
 //makePulse(10);
 
 j++;
