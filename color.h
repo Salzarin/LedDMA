@@ -1,6 +1,6 @@
 #include <math.h>
 
-typedef HSL{
+typedef struct HSL{
 	float H;
 	float S;
 	float L;
