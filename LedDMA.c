@@ -46,7 +46,7 @@ void makePulse(unsigned int head){
 		printf("%d |", yellow);
 		pos = pos>150 ? 150 : pos;
 		(0xFF<<16)|(yellow<<8);
-		setColor(0xFFCC99,pos);
+		setColor(0xCC6600,pos);
 	}
 
 }
