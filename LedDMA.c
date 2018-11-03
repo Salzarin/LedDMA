@@ -137,7 +137,7 @@ setColor(0xFF,i);
 }
 */
 //setColor(0xFFFF00,j);
-makePulse(10);
+makePulse(j);
 
 j++;
 j = j%150;
