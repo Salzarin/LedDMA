@@ -66,14 +66,9 @@ void execute_dma(){
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	while(((*(dma_channel)) & 0x1) == 0x1);
 	*(dma_channel) &= ~0x1;
-	*(dma_channel)  |= (1<<31);
-	*(dma_channel)  |= (1<<30);
-	usleep(10);
-	*(dma_channel) |=(3<<1) | (1<<8);
-	printf("%x\n",(uint32_t)led_cb[0]);
+	printf("%x\n",(uint32_t)virtTophys(led_cb[0]));
 	*(dma_channel+1) = (uint32_t)virtTophys(led_cb[0]) ;
-	*(dma_channel+8) |= 0x7;
-	*(dma_channel) |=(1<<28)|(1<<29)| 0x1;
+	*(dma_channel) |=0x1;
 }
 
 void setColor(unsigned int color, int led_number){
