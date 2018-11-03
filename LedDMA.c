@@ -97,10 +97,13 @@ while(1){
 }
 */
 printf("starting loop\n");
+int i = 0;
 while(1){
 
-printf("%d %d\r", readPin(20), readPin(21));
-usleep(10);
+//printf("%d %d\r", readPin(20), readPin(21));
+
+setColor(0x00,i);
+usleep(1000);
 }
 //pthread_join(thread_id,NULL);
 return 0;
