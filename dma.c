@@ -43,10 +43,10 @@ unsigned int makeWord(unsigned char led){
 	unsigned int word =0;
 	for(int i = 0; i<8;i++){
 		if((led>>i) & 0x1){
-			word |= 0xC<<((7-i)*4);
+			word |= 0xC<<(i*4);
 		}
 		else{
-			word |= 0x8<<((7-i)*4);
+			word |= 0x8<<(i*4);
 		}
 	}
 	return word;
