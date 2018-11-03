@@ -77,7 +77,7 @@ int set_dma(){
 	unsigned int * data_ptr = data;
 
 	for(int i = 0; i<led;i++){
-		if(i > 50){
+		if(i > 80){
 		*data_ptr = makeWord(0xFF);
 		data_ptr++;
 		*data_ptr = makeWord(0x00);
@@ -85,7 +85,7 @@ int set_dma(){
 		*data_ptr = makeWord(0x00);
 		data_ptr++;
 		}
-		else if( i > 25){
+		else if( i > 40){
 		*data_ptr = makeWord(0x00);
 		data_ptr++;
 		*data_ptr = makeWord(0xFF);
