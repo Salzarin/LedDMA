@@ -9,8 +9,14 @@
 #include <time.h>
 #include <string.h>
 
+typedef struct LED_COLOR{
+	unsigned int green;
+	unsigned int red;
+	unsigned int blue;
+};
+
 volatile unsigned int *dma;
-unsigned int *data;
+LED_COLOR *data;
 uintptr_t virtTophys(void* virt);
 void freeVirtPhysPage(void* virtAddr);
 void makeVirtPhysPage(void** virtAddr, void** physAddr);
@@ -58,5 +64,6 @@ void setup_dma();
 int set_dma();
 unsigned int makeWord(unsigned char led);
 void shutdown_dma();
+void setColor(unsigned int color, int led_number);
 
 #endif

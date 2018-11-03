@@ -62,6 +62,18 @@ void shutdown_dma(){
 
 }
 
+void setColor(unsigned int color, int led_number){
+	unsigned int page_number = led_number/40;
+	unsigned int * srcData = (unsigned int *)virtSrcPage[led_number];
+}
+
+void generateWave(LED_COLOR * led, unsigned int color){
+	led->green = makeWord((color>>16) & 0xFF);
+	led->blue = makeWord((color) & 0xFF);
+	led->red = makeWord((color>>8) & 0xFF);
+
+}
+
 
 int set_dma(){
 	unsigned int led = 150;
@@ -74,31 +86,19 @@ int set_dma(){
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	makeVirtPhysPage(&virtBlankSrcPage, &physBlankSrcPage);
 	
-	unsigned int * data_ptr = data;
+	LED_COLOR * data_ptr = data;
 
 	for(int i = 0; i<led;i++){
 		if(i > 80){
-		*data_ptr = makeWord(0xFF);
-		data_ptr++;
-		*data_ptr = makeWord(0x00);
-		data_ptr++;
-		*data_ptr = makeWord(0x00);
+		generateWave(data_ptr,0xFF0000);
 		data_ptr++;
 		}
 		else if( i > 40){
-		*data_ptr = makeWord(0x00);
-		data_ptr++;
-		*data_ptr = makeWord(0xFF);
-		data_ptr++;
-		*data_ptr = makeWord(0x00);
+		generateWave(data_ptr,0x00FF00);
 		data_ptr++;
 		}
 		else{
-		*data_ptr = makeWord(0x00);
-		data_ptr++;
-		*data_ptr = makeWord(0x00);
-		data_ptr++;
-		*data_ptr = makeWord(0xFF);
+		generateWave(data_ptr,0x0000FF);
 		data_ptr++;
 		}
 	}
@@ -111,8 +111,8 @@ int set_dma(){
 		makeVirtPhysPage(&virtSrcPage[i], &physSrcPage[i]);
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 		SrcPages[i] = (unsigned int *)virtSrcPage[i];
-		memcpy(SrcPages[i], data+i*3*40, 40*3*4);
-		printf("%x %x %x\n", SrcPages[i],*(data+i*3*40+1),*SrcPages[i]);
+		memcpy(SrcPages[i], data+i*40, 40*3*4);
+		printf("%x %x %x\n", SrcPages[i],*(data+i*40),*SrcPages[i]);
 	}
 	printf("Building Control Blocks\n");
 	DMAControlBlock * cb_ptr = led_cb[0];	
