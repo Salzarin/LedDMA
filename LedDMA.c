@@ -94,7 +94,7 @@ for(int i = 0; i<150; i++){
 setColor(0xFF,i);
 }
 
-setColor(0xFFFF00,j);
+setColor(0xFFFF00,10);
 //makePulse(10);
 
 j++;
