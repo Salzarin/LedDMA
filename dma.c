@@ -80,7 +80,7 @@ int set_dma(){
 	unsigned int led = 150;
 	unsigned int wait_time = 20;
 	volatile unsigned int* dma_channel = dma+0x500/4;
-	unsigned int total_led = led+wait_time;
+	unsigned int byte_per_led = sizeof(LED_COLOR);
 	data = malloc(4*3*led);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
@@ -90,11 +90,11 @@ int set_dma(){
 	LED_COLOR * data_ptr = data;
 
 	for(int i = 0; i<led;i++){
-		if(i > 80){
+		if(i > 2*LED_PER_PAGE){
 		generateWave(data_ptr,0xFF0000);
 		data_ptr++;
 		}
-		else if( i > 40){
+		else if( i > LED_PER_PAGE){
 		generateWave(data_ptr,0x00FF00);
 		data_ptr++;
 		}
@@ -106,14 +106,14 @@ int set_dma(){
 
 
 
-	for(int i = 0; i<=((led/40)); i++){
+	for(int i = 0; i<=((led/LED_PER_PAGE)); i++){
 		printf("Page %d\n", i);
 		makeVirtPhysPage(&virtCbPage[i], &physCbPage[i]);
 		makeVirtPhysPage(&virtSrcPage[i], &physSrcPage[i]);
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 		SrcPages[i] = (unsigned int *)virtSrcPage[i];
-		memcpy(SrcPages[i], data+i*40, 40*3*4);
-		printf("%x %x %x\n", SrcPages[i],*(data+i*40),*SrcPages[i]);
+		memcpy(SrcPages[i], data+i*LED_PER_PAGE, LED_PER_PAGE*3*4);
+		printf("%x %x %x\n", SrcPages[i],*(data+i*LED_PER_PAGE),*SrcPages[i]);
 	}
 	printf("Building Control Blocks\n");
 	DMAControlBlock * cb_ptr = led_cb[0];	
@@ -123,21 +123,20 @@ int set_dma(){
 	memset(BlankArray,0,1);
 	uint32_t physDest = 0x7E20C018;
 	
-	unsigned int * srcData = (unsigned int *)virtSrcPage[0];	
-	for(int i = 0; i<(3*led);i++){
-		if(!(i%120) && i!=0){
-			printf("%d %d\n", i, i/120);
-			//makeVirtPhysPage(&virtCbPage[i/150], &physCbPage[i/150]);
-			//led_cb[i/120] = (DMAControlBlock *)virtCbPage[i/120];
+	unsigned int * srcData = (unsigned int *)virtSrcPage[0];
+	unsigned int byte_per_page = byte_per_led * LED_PER_PAGE;
+	for(int i = 0; i<(byte_per_led*led/4);i++){
+		if(!(i%byte_per_page) && i!=0){
+			printf("%d %d\n", i, i/byte_per_page);
 			cb_ptr--;
-			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
-			printf("Link to next block: %x %x\n",(uint32_t)led_cb[i/120], virtTophys(led_cb[i/150]));
-			cb_ptr = led_cb[i/120];
-			srcData = (unsigned int *)SrcPages[i/120];
+			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/byte_per_page]));
+			printf("Link to next block: %x %x\n",(uint32_t)led_cb[i/byte_per_page], virtTophys(led_cb[i/byte_per_page]));
+			cb_ptr = led_cb[i/byte_per_page];
+			srcData = (unsigned int *)SrcPages[i/byte_per_page];
 			printf("Data Src to next block: %x %x\n", (uint32_t)(srcData) ,virtTophys(srcData));
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
-		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcData+i%120));
+		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcData+i%byte_per_page));
 		cb_ptr->DEST_ADDR = (uint32_t)(physDest);
 		cb_ptr->TXFR_LEN = 4;
 		cb_ptr->STRIDE = 0;

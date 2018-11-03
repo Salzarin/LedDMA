@@ -9,6 +9,10 @@
 #include <time.h>
 #include <string.h>
 
+
+#define LED_PER_PAGE
+
+
 typedef struct LED_COLOR{
 	unsigned int green;
 	unsigned int red;
