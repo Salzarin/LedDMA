@@ -146,7 +146,7 @@ setColor(0xFF,i);
 */
 //setColor(0xFFFF00,j);
 for(int i = 0; i<150; i++){
-setColor(0x00,i);
+setColor(0xFFFFFF,i);
 }
 makePulse(j);
 
