@@ -62,7 +62,7 @@ signal(SIGINT, INThandler);
 
 printf("Setting up the clock\n");
 setup_pwm_clock();
-set_pwm_clock(1,6,0);
+set_pwm_clock(1,5,0);
 printf("Finished Setting up the clock\n");
 printf("Setting up PWM\n");
 setup_pwm();
