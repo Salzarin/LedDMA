@@ -90,6 +90,8 @@ int set_dma(){
 	data = malloc(4*3*led);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
+	printf("Bytes Per Led %d\n", byte_per_led);
+	
 	makeVirtPhysPage(&virtwaitCbPage, &physwaitCbPage);
 	makeVirtPhysPage(&virtBlankSrcPage, &physBlankSrcPage);
 	
