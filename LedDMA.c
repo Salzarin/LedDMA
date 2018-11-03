@@ -106,6 +106,55 @@ unsigned int fadeIn(unsigned int fromColor, unsigned int toColor, unsigned int i
 	return (fromColor-pos*fromColor/increment + toColor+pos*toColor/increment);
 }	
 
+void RGBtoHSL(unsigned int color, float * H, float * S, float * L){
+	float r = (color >> 16) & 0xFF;
+	float g = (color >> 8) & 0xFF;
+	float b = color & 0xFF;
+	
+	r = r/255.0;
+	g = g/255.0;
+	b = b/255.0;
+	
+	float rgb[3] = {r,g,b};
+	
+	float cMax = r;
+	float cMin = r;
+	int tMax = 0;
+	int tMin = 4;
+	for(int i = 0; i<3;i++){
+		tMax = rgb[i]>cMax ? i : tMax;
+		cMax = rgb[i]>cMax ? rgb[i] : cMax;
+		tMin = rgb[i]<cMin ? i : tMin;
+		cMin = rgb[i]<cMin ? rgb[i] : cMin;		
+	}
+	
+	float delta = cMax-cMin;
+	*L = (cMax+cMin)/2;
+	
+	
+	if( delta == 0){
+		*H = 0;
+		*S = 0;
+	}
+	else{
+		switch(tMax){
+			case 0:
+				*H = 60 *fmodf(((g-b)/delta),6);
+				break;
+			case 1:
+				*H = 60 *(((b-r)/delta)+2);
+				break;
+			case 2:
+				*H = 60 *(((r-g)/delta)+4);
+				break;	
+		}
+		*S = delta/(1.0 - fabs(2*(*L)-1));
+	}
+	
+	
+}
+
+
 
 int main(){
 
