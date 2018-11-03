@@ -103,7 +103,7 @@ void RGBtoHSL(unsigned int color, HSL* hsl){
 				hsl->H = 60 *(((r-g)/delta)+4);
 				break;	
 		}
-		hsl->S = delta/(1.0 - fabs(2*(*L)-1));
+		hsl->S = delta/(1.0 - fabs(2*(hsl->L)-1));
 	}
 	
 	hsl->H = (hsl->H)<0?(hsl->H)+360:(hsl->H);
