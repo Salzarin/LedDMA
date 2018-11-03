@@ -138,8 +138,8 @@ int j = 20;
 HSL red;
 HSL green;
 
-RGBtoHSL(0xFF0000,red);
-RGBtoHSL(0x00FF00,green);
+RGBtoHSL(0xFF0000,&red);
+RGBtoHSL(0x00FF00,&green);
 
 while(1){
 
