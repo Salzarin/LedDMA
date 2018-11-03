@@ -148,7 +148,7 @@ setColor(0xFF,i);
 for(int i = 0; i<150; i++){
 setColor(0x00,i);
 }
-makePulse(j, 10);
+makePulse(j, 20);
 
 j++;
 j = j%150;
