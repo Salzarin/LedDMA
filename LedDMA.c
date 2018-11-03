@@ -82,7 +82,7 @@ setColor(0x00,i);
 int j;
 while(1){
 
-//printf("%d %d\r", readPin(20), readPin(21));
+printf("%d %d\r", readPin(20), readPin(21));
 
 for(int i = 0; i<150; i++){
 setColor(0xFF,i);
