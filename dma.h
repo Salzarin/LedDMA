@@ -65,5 +65,5 @@ int set_dma();
 unsigned int makeWord(unsigned char led);
 void shutdown_dma();
 void setColor(unsigned int color, int led_number);
-
+void generateWave(LED_COLOR * led, unsigned int color);
 #endif

@@ -64,7 +64,8 @@ void shutdown_dma(){
 
 void setColor(unsigned int color, int led_number){
 	unsigned int page_number = led_number/40;
-	unsigned int * srcData = (unsigned int *)virtSrcPage[led_number];
+	LED_COLOR * srcData = (LED_COLOR *)virtSrcPage[page_number];
+	generateWave(srcData+led_number%40,color);
 }
 
 void generateWave(LED_COLOR * led, unsigned int color){
