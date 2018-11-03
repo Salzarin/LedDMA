@@ -28,11 +28,11 @@ for(int i = 0; i<100000; i++){
 
 
 void INThandler(int test){
-	/*
+	
 	for(int i = 0; i<150; i++){
 		setColor(0x00,i);
 	}
-	*/
+	
 	usleep(10000);
 	shutdown_dma();
 	exit(1);
