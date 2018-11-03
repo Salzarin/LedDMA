@@ -71,7 +71,7 @@ void setColor(unsigned int color, int led_number){
 	unsigned int page_number = led_number/40;
 	LED_COLOR * srcData = (LED_COLOR *)virtSrcPage[page_number];
 	generateWave(srcData+led_number%40,color);
-	
+	*(dma_channel+1) = (uint32_t) virtTophys(led_cb[0]) ;
 	*(dma_channel) |=(3<<1) | (1<<8) | 0x1;
 	
 }
