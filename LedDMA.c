@@ -26,35 +26,11 @@ for(int i = 0; i<100000; i++){
 
 
 
-/*
-void setColor( unsigned int led){
 
-
-
-
-while((*(pwm+1) &0x1));
-*(pwm+6) = makeWord(led & 0xFF);
-
-while((*(pwm+1) &0x1));
-*(pwm+6) = makeWord((led & 0xFF00)>>8);
-
-while((*(pwm+1) &0x1));
-*(pwm+6) = makeWord((led & 0xFF0000)>>16);
-
-}
-
-void *showLights(){
-while(1){
-	for(int i = 0; i<10;i++){
-		unsigned int color = 0xFF<<(8*(i%3));
-		setColor(color);
-	}
-	reset();
-}
-
-}
-*/
 void INThandler(int test){
+	for(int i = 0; i<150; i++){
+		setColor(0x00,i);
+	}
 	shutdown_dma();
 	exit(1);
 }
@@ -83,19 +59,6 @@ set_dma();
 
 
 
-//int state = 0;
-
-//pthread_t thread_id;
-//pthread_create(&thread_id,NULL,showLights,NULL);
-/*
-while(1){
-	//setColor(0x0F0);
-	showLights();
-
-	//setColor(0x0);
-
-}
-*/
 printf("starting loop\n");
 
 
