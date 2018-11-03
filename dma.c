@@ -104,7 +104,7 @@ int set_dma(){
 		data_ptr++;
 		}
 		else{
-		generateWave(data_ptr,0xFFFF00);
+		generateWave(data_ptr,0x0000FF);
 		data_ptr++;
 		}
 	}
