@@ -133,7 +133,7 @@ int set_dma(){
 			printf("Link to next block: %x %x\n",(uint32_t)led_cb[i/120], virtTophys(led_cb[i/150]));
 			cb_ptr = led_cb[i/120];
 			srcData = (unsigned int *)SrcPages[i/120];
-			printf("Data Src to next block: %x %x\n", (uint32_t)srcData ,virtTophys(srcData));
+			printf("Data Src to next block: %x %x\n", (uint32_t)(srcData+1) ,virtTophys(srcData));
 		} 
 		cb_ptr->TI = (5<<16)|(1<<6)| (1<<26)|(1<<1);
 		cb_ptr->SOURCE_ADDR = (uint32_t)(virtTophys(srcData));
