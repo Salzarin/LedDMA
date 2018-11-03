@@ -77,12 +77,13 @@ set_dma();
 
 printf("starting loop\n");
 
-/*
+
 for(int i = 0; i<150; i++){
 setColor(0x00,i);
 }
+execute_dma();
 int j;
-*/
+
 while(1){
 
 //printf("%d %d\r", readPin(20), readPin(21));
