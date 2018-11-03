@@ -67,7 +67,7 @@ void execute_dma(){
 	//while(((*(dma_channel)) & 0x1) == 0x1);
 	*(dma_channel) &= ~0x1;
 	printf("%x\n",(uint32_t)virtTophys(led_cb[0]));
-	*(dma_channel+1) = (uint32_t)virtTophys(led_cb[0]) ;
+	//*(dma_channel+1) = (uint32_t)virtTophys(led_cb[0]) ;
 	*(dma_channel) |=0x1;
 }
 
