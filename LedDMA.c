@@ -102,15 +102,19 @@ printf("starting loop\n");
 for(int i = 0; i<150; i++){
 setColor(0x00,i);
 }
-
+int j;
 while(1){
 
 //printf("%d %d\r", readPin(20), readPin(21));
 
+for(int i = 0; i<150; i++){
+setColor(0x00,i);
+}
+setColor(0xFF0000, j);
 
-
-
-sleep(1);
+j++;
+j = j%150;
+usleep(500000);
 }
 //pthread_join(thread_id,NULL);
 return 0;
