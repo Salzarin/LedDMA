@@ -41,22 +41,48 @@ void INThandler(int test){
 void makePulse(unsigned int head){
 	int tail_length = 10;
 	unsigned int pos = head;
+	char color = 0x0;
+	
 	for(int i = 0; i<tail_length;i++){
-		char yellow = i*0x19;;
+		color = i*0xFF/tail_length;
 		//printf("%x |", (0xFF<<16)|(yellow<<8));
-		setColor((0xFF<<16)|(yellow<<8),pos);
+		setColor((0xFF<<16)|(color<<8),pos);
 		pos--;
 		pos = pos>150?150:pos;
 	}
 
 	for(int i = 0; i<tail_length;i++){
-		char green = i*0x19;
 		//printf("%x |", (0xFF<<16)|(yellow<<8));
-		setColor(((0xFF-green)<<16)|(0xFF<<8),pos);
+		color = i*0xFF/tail_length;
+		setColor(((0xFF-color)<<16)|(0xFF<<8),pos);
 		pos--;
 		pos = pos>150?150:pos;
 	}
 
+	for(int i = 0; i<tail_length;i++){
+		color = i*0xFF/tail_length;
+		//printf("%x |", (0xFF<<16)|(yellow<<8));
+		setColor(((0xFF)<<8)|(color),pos);
+		pos--;
+		pos = pos>150?150:pos;
+	}
+	
+	for(int i = 0; i<tail_length;i++){
+		color = i*0xFF/tail_length;
+		//printf("%x |", (0xFF<<16)|(yellow<<8));
+		setColor(((0xFF-color)<<8)|(0xFF),pos);
+		pos--;
+		pos = pos>150?150:pos;
+	}
+
+	for(int i = 0; i<tail_length;i++){
+		color = i*0xFF/tail_length;
+		//printf("%x |", (0xFF<<16)|(yellow<<8));
+		setColor(((color)<<16)|(0xFF),pos);
+		pos--;
+		pos = pos>150?150:pos;
+	}
+	
 }
 
 int main(){
