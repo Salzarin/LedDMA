@@ -56,7 +56,7 @@ while(1){
 
 void INThandler(int test){
 	shutdown_dma();
-	
+	exit(1);
 }
 
 int main(){
