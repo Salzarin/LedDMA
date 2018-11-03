@@ -2,7 +2,7 @@ CXX = gcc
 CXXFLAGS =-g -lpthread -Wall
 ODIR=obj
 
-_OBJ = LedDMA.o gpio.o pwm.o dma.o
+_OBJ = LedDMA.o gpio.o pwm.o dma.o color.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
