@@ -31,6 +31,7 @@ void INThandler(int test){
 	for(int i = 0; i<150; i++){
 		setColor(0x00,i);
 	}
+	usleep(50);
 	shutdown_dma();
 	exit(1);
 }
