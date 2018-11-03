@@ -102,7 +102,8 @@ void makePulse(unsigned int head, int tail_length){
 }
 
 unsigned int fadeIn(unsigned int fromColor, unsigned int toColor, unsigned int increment, unsigned int pos){
-	return (fromColor+pos*toColor/increment);
+
+	return (fromColor-pos*fromColor/increment + toColor+pos*toColor/increment);
 }	
 
 
