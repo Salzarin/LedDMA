@@ -87,7 +87,7 @@ int j;
 while(1){
 
 //printf("%d %d\r", readPin(20), readPin(21));
-printf("%d\r", j);
+printf("%d\n", j);
 
 
 for(int i = 0; i<150; i++){
