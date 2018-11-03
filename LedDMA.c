@@ -89,11 +89,11 @@ while(1){
 //printf("%d %d\r", readPin(20), readPin(21));
 printf("%d\n", j);
 
-
+/*
 for(int i = 0; i<150; i++){
 setColor(0xFF,i);
 }
-
+*/
 setColor(0xFFFF00,10);
 //makePulse(10);
 
