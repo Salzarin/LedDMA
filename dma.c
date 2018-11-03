@@ -98,7 +98,7 @@ int set_dma(){
 		data_ptr++;
 		*data_ptr = makeWord(0x00);
 		data_ptr++;
-		*data_ptr = makeWord(0xFF);
+		*data_ptr = makeWord(0x00);
 		data_ptr++;
 		}
 	}
