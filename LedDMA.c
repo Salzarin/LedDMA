@@ -65,6 +65,7 @@ void makePulse(unsigned int head, int tail_length){
 	for(int i = 0; i<tail_length;i++){
 
 		setColor(interpolateColor(green,blue,tail_length,i),pos);
+		printf("%x | ", interpolateColor(green,blue,tail_length,i));
 		pos--;
 		pos = pos>150?150:pos;
 	}
