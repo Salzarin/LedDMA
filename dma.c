@@ -86,7 +86,7 @@ int set_dma(){
 		data_ptr++;
 		}
 		else if( i > 40){
-		*data_ptr = makeWord(0x00);
+		*data_ptr = makeWord(0xEE);
 		data_ptr++;
 		*data_ptr = makeWord(0xFF);
 		data_ptr++;
@@ -94,7 +94,7 @@ int set_dma(){
 		data_ptr++;
 		}
 		else{
-		*data_ptr = makeWord(0x00);
+		*data_ptr = makeWord(0xDD);
 		data_ptr++;
 		*data_ptr = makeWord(0x00);
 		data_ptr++;
