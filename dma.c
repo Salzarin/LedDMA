@@ -129,8 +129,8 @@ int set_dma(){
 			//makeVirtPhysPage(&virtCbPage[i/150], &physCbPage[i/150]);
 			//led_cb[i/120] = (DMAControlBlock *)virtCbPage[i/120];
 			cb_ptr--;
-			cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(led_cb[i/120]));
-			printf("Link to next block: %x %x\n",(uint32_t)led_cb[i/120], virtTophys(led_cb[i/150]));
+			cb_ptr->NEXTCONBK = (uint32_t)(physCbPage[i/120]);
+			printf("Link to next block: %x %x\n",(uint32_t)led_cb[i/120], (uint32_t)physCbPage[i/120]);
 			cb_ptr = led_cb[i/120];
 			srcData = (unsigned int *)SrcPages[i/120];
 			printf("Data Src to next block: %x %x\n", (uint32_t)srcData ,virtTophys(srcData));
