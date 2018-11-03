@@ -69,9 +69,9 @@ void setColor(unsigned int color, int led_number){
 }
 
 void generateWave(LED_COLOR * led, unsigned int color){
-	led->green = makeWord((color>>16) & 0xFF);
+	led->green = makeWord((color>>8) & 0xFF);
 	led->blue = makeWord((color) & 0xFF);
-	led->red = makeWord((color>>8) & 0xFF);
+	led->red = makeWord((color>>16) & 0xFF);
 
 }
 
