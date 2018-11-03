@@ -101,7 +101,7 @@ execute_dma();
 j++;
 j = j%150;
 
-usleep(1000000);
+usleep(10000);
 }
 //pthread_join(thread_id,NULL);
 return 0;
