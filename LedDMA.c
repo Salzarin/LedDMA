@@ -138,8 +138,8 @@ setColor(0xFF,i);
 
 
 //solidColor(interpolateColor(red,green,150,j));
-
-makePulse(j, 20);
+solidColor(0);
+makePulse(j, 50);
 
 j++;
 j = j%150;
