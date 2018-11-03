@@ -90,7 +90,7 @@ void makePulse(unsigned int head){
 		pos--;
 		pos = pos>150?150:pos;
 	}
-	
+	setColor(0,pos);
 }
 
 int main(){
