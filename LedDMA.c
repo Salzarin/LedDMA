@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include <time.h>
 #include <pthread.h>
+#include <signal.h>
+
 
 #include "gpio.h"
 #include "pwm.h"
@@ -52,7 +54,10 @@ while(1){
 
 }
 
-
+void INThandler(int){
+	shutdown_dma();
+	
+}
 
 int main(){
 
@@ -62,7 +67,7 @@ setPinMode(18, 2);
 setPinMode(20,0);
 setPinMode(21,0);
 
-
+signal(SIGINT, INThandler);
 
 printf("Setting up the clock\n");
 setup_pwm_clock();

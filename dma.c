@@ -53,6 +53,15 @@ unsigned int makeWord(unsigned char led){
 }
 
 
+void shutdown_dma(){
+		(dma_channel) &=~0x1;
+		freeVirtPhysPage(virtwaitCbPage);
+		freeVirtPhysPage(virtBlankSrcPage);
+		free(data);
+
+}
+
+
 int set_dma(){
 	unsigned int led = 100;
 	unsigned int wait_time = 200;
@@ -102,7 +111,7 @@ int set_dma(){
 		led_cb[i] = (DMAControlBlock *)virtCbPage[i];
 		SrcPages[i] = (unsigned int *)virtSrcPage[i];
 		memcpy(SrcPages[i], data+i*4*3*40, 40*3*4);
-		printf("%x %x %x\n", SrcPages[i],data+i*4*3*40,*SrcPages[i]);
+		printf("%x %x %x\n", SrcPages[i],*(data+i*4*3*40),*SrcPages[i]);
 	}
 	printf("Building Control Blocks\n");
 	DMAControlBlock * cb_ptr = led_cb[0];	
