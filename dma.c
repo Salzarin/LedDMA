@@ -64,10 +64,7 @@ void shutdown_dma(){
 
 void setColor(unsigned int color, int led_number){
 	volatile unsigned int* dma_channel = dma+0x500/4;
-	printf("Waiting\r");
 	while(((*(dma_channel)) & 0x1) == 0x1);
-	*(dma_channel) &=~0x1;
-	*(dma_channel) |=(31<<1);
 	unsigned int page_number = led_number/40;
 	LED_COLOR * srcData = (LED_COLOR *)virtSrcPage[page_number];
 	generateWave(srcData+led_number%40,color);
