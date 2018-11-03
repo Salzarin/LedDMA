@@ -1,5 +1,5 @@
 CXX = gcc
-CXXFLAGS =-g -lpthread -Wall
+CXXFLAGS =-g -lpthread -lm -Wall
 ODIR=obj
 
 _OBJ = LedDMA.o gpio.o pwm.o dma.o color.o
