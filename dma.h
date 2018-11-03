@@ -13,7 +13,7 @@ typedef struct LED_COLOR{
 	unsigned int green;
 	unsigned int red;
 	unsigned int blue;
-};
+} LED_COLOR;
 
 volatile unsigned int *dma;
 LED_COLOR *data;
