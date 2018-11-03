@@ -151,6 +151,7 @@ int set_dma(){
 	wait_cb = (DMAControlBlock *)(virtwaitCbPage);
 	
 	cb_ptr--;
+	printf("Data Src to next block: %x %x\n", (uint32_t)wait_cb ,virtTophys(wait_cb));
 	cb_ptr->NEXTCONBK = (uint32_t)(virtTophys(wait_cb));
 	
 	
