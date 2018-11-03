@@ -101,7 +101,7 @@ int i = 0;
 while(1){
 
 //printf("%d %d\r", readPin(20), readPin(21));
-
+printf("Shutting down %d\r", i);
 setColor(0x00,i);
 i++;
 i = i%150;
