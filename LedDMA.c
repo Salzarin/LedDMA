@@ -105,7 +105,7 @@ printf("Shutting down %d\r", i);
 setColor(0x00,i);
 i++;
 i = i%150;
-sleep(1000);
+sleep(1);
 }
 //pthread_join(thread_id,NULL);
 return 0;
