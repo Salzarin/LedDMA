@@ -114,7 +114,7 @@ setColor(0xFF0000, j);
 
 j++;
 j = j%150;
-usleep(500000);
+usleep(250000);
 }
 //pthread_join(thread_id,NULL);
 return 0;
