@@ -85,7 +85,7 @@ while(1){
 //printf("%d %d\r", readPin(20), readPin(21));
 
 for(int i = 0; i<150; i++){
-setColor(0x00,i);
+setColor(0xFF,i);
 }
 
 setColor(0xFFFF00 + j,5);
