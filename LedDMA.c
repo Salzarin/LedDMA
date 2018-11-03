@@ -43,7 +43,7 @@ void makePulse(unsigned int head){
 	for(int i = 0; i<tail_length;i++){
 		char color = i*0x19;
 		char red = color;
-		char green = color - red;
+		char green = 0xFF - red;
 		int pos = head-i;
 		pos = pos>150 ? 150 : pos;
 		printf("%d %d |", red, green);
