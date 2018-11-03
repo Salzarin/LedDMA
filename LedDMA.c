@@ -26,7 +26,7 @@ for(int i = 0; i<100000; i++){
 
 
 
-
+/*
 void setColor( unsigned int led){
 
 
@@ -42,7 +42,7 @@ while((*(pwm+1) &0x1));
 *(pwm+6) = makeWord((led & 0xFF0000)>>16);
 
 }
-
+*/
 void *showLights(){
 while(1){
 	for(int i = 0; i<10;i++){
