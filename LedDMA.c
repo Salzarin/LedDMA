@@ -38,8 +38,8 @@ void INThandler(int test){
 	exit(1);
 }
 
-void makePulse(unsigned int head){
-	int tail_length = 10;
+void makePulse(unsigned int head, int tail_length){
+	tail_length = tail_length <= 0 ? 1: tail_length;
 	unsigned int pos = head;
 	char color = 0x0;
 	
@@ -146,9 +146,9 @@ setColor(0xFF,i);
 */
 //setColor(0xFFFF00,j);
 for(int i = 0; i<150; i++){
-setColor(0xFFFFFF,i);
+setColor(0x00,i);
 }
-makePulse(j);
+makePulse(j, 10);
 
 j++;
 j = j%150;
