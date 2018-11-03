@@ -78,7 +78,7 @@ void generateWave(LED_COLOR * led, unsigned int color){
 
 int set_dma(){
 	unsigned int led = 150;
-	unsigned int wait_time = 50;
+	unsigned int wait_time = 30;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int byte_per_led = sizeof(LED_COLOR);
 	data = malloc(4*3*led);
