@@ -54,7 +54,7 @@ while(1){
 
 }
 
-void INThandler(int){
+void INThandler(int test){
 	shutdown_dma();
 	
 }
