@@ -56,8 +56,8 @@ unsigned int makeWord(unsigned char led){
 void shutdown_dma(){
 	volatile unsigned int* dma_channel = dma+0x500/4;
 		*(dma_channel) &=~0x1;
-		//freeVirtPhysPage(virtwaitCbPage);
-		//freeVirtPhysPage(virtBlankSrcPage);
+		freeVirtPhysPage(virtwaitCbPage);
+		freeVirtPhysPage(virtBlankSrcPage);
 		//free(data);
 
 }
