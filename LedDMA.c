@@ -17,16 +17,13 @@
 
 void reset(){
 	
-while(!(*(pwm+1) &0x2));
-for(int i = 0; i<100000; i++){
-	while((*(pwm+1) &0x1));
-	*(pwm+6) = 0x0;
-}
+	while(!(*(pwm+1) &0x2));
+	for(int i = 0; i<100000; i++){
+		while((*(pwm+1) &0x1));
+		*(pwm+6) = 0x0;
+	}
 
 }
-
-
-
 
 void INThandler(int test){
 	
@@ -51,10 +48,18 @@ void makePulse(unsigned int head, int tail_length){
 	unsigned int pos = head;
 	char color = 0x0;
 	
+	HSL red;
+	HSL green;
+	HSL blue;
+	
+	RGBtoHSL(0xFF0000, &red);
+	RGBtoHSL(0x00FF00, &green);
+	RGBtoHSL(0x0000FF, &blue);
+	
 	for(int i = 0; i<tail_length;i++){
 		color = i*0xFF/tail_length;
 		//printf("%x |", (0xFF<<16)|(yellow<<8));
-		setColor((0xFF<<16)|(color<<8),pos);
+		setColor(interpolateColor(red,green,tail_length,i),pos);
 		pos--;
 		pos = pos>150?150:pos;
 	}
@@ -97,7 +102,7 @@ void makePulse(unsigned int head, int tail_length){
 		setColor(((0xFF)<<16)|(0xFF-color),pos);
 		pos--;
 		pos = pos>150?150:pos;
-}
+	}
 	pos++;
 	setColor(0,pos);
 }
@@ -105,7 +110,10 @@ void makePulse(unsigned int head, int tail_length){
 
 
 
-int main(){
+int main(int argc, char **argv){
+
+
+int mode =
 
 setup_gpio();
 
@@ -154,15 +162,15 @@ setColor(0xFF,i);
 //setColor(0xFFFF00,j);
 
 
-solidColor(interpolateColor(red,green,150,j));
+//solidColor(interpolateColor(red,green,150,j));
 
-//makePulse(j, 20);
+makePulse(20, 20);
 
 j++;
 j = j%150;
 
 
-usleep(1000000);
+usleep(100000);
 }
 //pthread_join(thread_id,NULL);
 return 0;
