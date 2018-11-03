@@ -38,6 +38,14 @@ void INThandler(int test){
 	exit(1);
 }
 
+
+void solidColor(unsigned int color){
+	
+	for(int i = 0; i<150; i++){
+		setColor(color,i);
+	}
+}
+
 void makePulse(unsigned int head, int tail_length){
 	tail_length = tail_length <= 0 ? 1: tail_length;
 	unsigned int pos = head;
@@ -145,10 +153,8 @@ setColor(0xFF,i);
 }
 */
 //setColor(0xFFFF00,j);
-for(int i = 0; i<150; i++){
-setColor(0x00,i);
-}
-makePulse(j, 20);
+solidColor(0xFF00FF);
+//makePulse(j, 20);
 
 j++;
 j = j%150;
