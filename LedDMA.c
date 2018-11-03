@@ -41,13 +41,11 @@ void INThandler(int test){
 void makePulse(unsigned int head){
 	int tail_length = 10;
 	for(int i = 0; i<tail_length;i++){
-		char color = i*0x19;
-		char red = color;
-		char green = 0xFF - red;
+		char yellow = i*0x19;;
 		int pos = head-i;
 		pos = pos>150 ? 150 : pos;
 		printf("%d %d |", red, green);
-		setColor((red<<16)|(green<<8),pos);
+		setColor((0xFF<<16)|(yellow<<8),pos);
 	}
 
 }
