@@ -14,11 +14,11 @@ new.L = fromHSL.L + step*(toHSL.L - fromHSL.L)/increment;
 return HSLtoRGB(new);
 }
 unsigned int HSLtoRGB(HSL hsl){
-	float C = (1 - fabs(2*hsl.L-1))*S;
+	float C = (1 - fabs(2*hsl.L-1))*hsl.S;
 	float X = C*(1 - fabs(fmod(hsl.H/60, 2)-1));
 	float m = hsl.L -C/2;
 	
-	int type = (int)(H/60.0);
+	int type = (int)(hsl.H/60.0);
 	type = type % 6;
 	float rgb[0];
 	switch(type){
