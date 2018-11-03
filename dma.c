@@ -87,7 +87,7 @@ int set_dma(){
 	unsigned int wait_time = 30;
 	volatile unsigned int* dma_channel = dma+0x500/4;
 	unsigned int byte_per_led = sizeof(LED_COLOR);
-	data = malloc(4*3*led);
+	data = malloc(byte_per_led*led);
 	printf("Setting up DMA %x\n", (uint32_t)(dma_channel));
 	
 	printf("Bytes Per Led %d\n", byte_per_led);
