@@ -82,7 +82,7 @@ for(int i = 0; i<150; i++){
 setColor(0x00,i);
 }
 execute_dma();
-int j;
+int j = 20;
 
 while(1){
 
