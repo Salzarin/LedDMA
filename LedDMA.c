@@ -8,7 +8,7 @@
 #include <time.h>
 #include <pthread.h>
 #include <signal.h>
-
+#include <math.h>
 
 #include "gpio.h"
 #include "pwm.h"
@@ -150,8 +150,7 @@ void RGBtoHSL(unsigned int color, float * H, float * S, float * L){
 		}
 		*S = delta/(1.0 - fabs(2*(*L)-1));
 	}
-	
-	
+		
 }
 
 
