@@ -186,7 +186,7 @@ if(solidColor){
 if(PulseGenerator){
 
 makePulse(j, 20);
-j++
+j++;
 j = j%150;
 }
 
