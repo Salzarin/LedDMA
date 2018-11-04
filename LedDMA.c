@@ -123,12 +123,10 @@ void makeRandomPulse(unsigned int head, int tail_length){
 
 
 
-int main(int argc, char **argv){
+int main(int argc, char *argv[]){
 
 int solidColorFlag = 1;
 int pulseGenerator = 0;
-for(int i = 0; i<argc ; i++){
-}
 
 if(argc>1){
 solidColorFlag = 0;
