@@ -4,13 +4,15 @@
 
 
 
-unsigned int interpolateColor(HSL fromHSL, HSL toHSL, float increment, float step){
+unsigned int interpolateColor(HSL fromHSL, HSL toHSL, float increment, float step, HSL * hsl){
 
 HSL new;
 new.H = fromHSL.H + step*(toHSL.H - fromHSL.H)/increment;
 new.S = fromHSL.S + step*(toHSL.S - fromHSL.S)/increment;
 new.L = fromHSL.L + step*(toHSL.L - fromHSL.L)/increment;
-
+hsl->H = new.H;
+hsl->S = new.S;
+hsl->L = new.L;
 return HSLtoRGB(new);
 }
 unsigned int HSLtoRGB(HSL hsl){
