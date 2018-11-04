@@ -181,7 +181,7 @@ if(solidColorFlag){
 	HSLset(&start,&finish);
 	RGBtoHSL(rand() % 0xFFFFFF,&finish);
 	}
-	j = j%100;
+	j = j%1000;
 	usleep(1000);
 }
 if(pulseGenerator){
