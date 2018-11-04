@@ -10,8 +10,8 @@ unsigned int HSLtoRGB(HSL hsl);
 unsigned int interpolateColor(HSL fromHSL, HSL toHSL, float increment, float step, HSL * hsl);
 
 void HSLset(HSL* dest, HSL* source){
-	dest.H = source.H;
-	dest.S = source.S;
-	dest.L = source.L;
+	dest->H = source->H;
+	dest->S = source->S;
+	dest->L = source->L;
 
 }
