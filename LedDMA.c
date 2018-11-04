@@ -183,7 +183,7 @@ if(solidColor){
 	}
 	j = j%1000;
 }
-if(PulseGenerator){
+if(pulseGenerator){
 
 makePulse(j, 20);
 j++;
