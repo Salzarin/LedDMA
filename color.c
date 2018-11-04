@@ -110,3 +110,10 @@ void RGBtoHSL(unsigned int color, HSL* hsl){
 	
 }
 
+
+void HSLset(HSL* dest, HSL* source){
+	dest->H = source->H;
+	dest->S = source->S;
+	dest->L = source->L;
+
+}
