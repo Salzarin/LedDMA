@@ -184,7 +184,7 @@ if(solidColorFlag){
 }
 if(pulseGenerator){
 
-makePulse(j, 20);
+makePulse(j, 50);
 j++;
 j = j%150;
 usleep(100000);
