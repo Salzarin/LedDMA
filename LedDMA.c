@@ -125,13 +125,13 @@ void makeRandomPulse(unsigned int head, int tail_length){
 
 int main(int argc, char **argv){
 
-int solidColor = 1;
+int solidColorFlag = 1;
 int pulseGenerator = 0;
 for(int i = 0; i<argc ; i++){
 }
 
 if(argc>1){
-solidColor = 0;
+solidColorFlag = 0;
 pulseGenerator = 1;
 }
 srand(time(0));
@@ -174,7 +174,7 @@ while(1){
 
 printf("%d\n", j);
 
-if(solidColor){
+if(solidColorFlag){
 	solidColor(interpolateColor(start,finish,1000,j));
 	j++;
 	if(j == 1000){
