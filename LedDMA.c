@@ -70,7 +70,7 @@ void makePulse(unsigned int head, int tail_length){
 		setColor(interpolateColor(green,blue,tail_length,i,&test),pos);
 		pos--;
 		pos = pos>150?150:pos;
-		printf("%f, %f, %f | ", test.H, test.S, test.L);
+		printf("%.2f, %.2f, %.2f : %x | ", test.H, test.S, test.L,interpolateColor(green,blue,tail_length,i,&test));
 	}
 	for(int i = 0; i<tail_length;i++){
 
