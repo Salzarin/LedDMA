@@ -85,7 +85,6 @@ void makePulse(unsigned int head, int tail_length){
 void makeRandomPulse(unsigned int head, int tail_length){
 	tail_length = tail_length <= 0 ? 1: tail_length;
 	unsigned int pos = head;
-	char color = 0x0;
 	
 	HSL red;
 	HSL green;
@@ -102,19 +101,19 @@ void makeRandomPulse(unsigned int head, int tail_length){
 
 		setColor(interpolateColor(red,green,tail_length,i),pos);
 		pos--;
-		pos = pos>150?149:pos;
+		pos = pos>150?151:pos;
 	}
 	for(int i = 0; i<tail_length;i++){
 
 		setColor(interpolateColor(green,blue,tail_length,i),pos);
 		pos--;
-		pos = pos>150?149:pos;
+		pos = pos>150?151:pos;
 	}
 	for(int i = 0; i<tail_length;i++){
 
 		setColor(interpolateColor(blue,red,tail_length,i),pos);
 		pos--;
-		pos = pos>150?149:pos;
+		pos = pos>150?151:pos;
 	}
 	
 	if(tail_length*3 < 150){
