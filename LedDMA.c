@@ -63,22 +63,27 @@ void makePulse(unsigned int head, int tail_length){
 
 		setColor(interpolateColor(red,green,tail_length,i),pos);
 		pos--;
-		pos = pos>150?150:pos;
+		pos = pos>149?149:pos;
 	}
 	for(int i = 0; i<tail_length;i++){
 
 		setColor(interpolateColor(green,blue,tail_length,i),pos);
 		pos--;
-		pos = pos>150?150:pos;
+		pos = pos>149?149:pos;
 	}
 	for(int i = 0; i<tail_length;i++){
 
 		setColor(interpolateColor(blue,red,tail_length,i),pos);
 		pos--;
-		pos = pos>150?150:pos;
+		pos = pos>149?149:pos;
 	}
-
-	setColor(0,pos);
+	
+	if(tail_length*3 < 150){
+		setColor(0,pos);
+	}
+	else{
+		setColor(0xFF0000,pos);
+	}
 }
 
 
@@ -101,19 +106,19 @@ void makeRandomPulse(unsigned int head, int tail_length){
 
 		setColor(interpolateColor(red,green,tail_length,i),pos);
 		pos--;
-		pos = pos>150?150:pos;
+		pos = pos>149?149:pos;
 	}
 	for(int i = 0; i<tail_length;i++){
 
 		setColor(interpolateColor(green,blue,tail_length,i),pos);
 		pos--;
-		pos = pos>150?150:pos;
+		pos = pos>149?149:pos;
 	}
 	for(int i = 0; i<tail_length;i++){
 
 		setColor(interpolateColor(blue,red,tail_length,i),pos);
 		pos--;
-		pos = pos>150?150:pos;
+		pos = pos>149?149:pos;
 	}
 	
 	if(tail_length*3 < 150){
