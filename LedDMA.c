@@ -138,7 +138,7 @@ setColor(0xFF,i);
 //setColor(0xFFFF00,j);
 
 
-//solidColor(interpolateColor(start,finish,150,j,NULL));
+solidColor(interpolateColor(start,finish,150,j,NULL));
 //solidColor(0);
 //makePulse(j, 20);
 
