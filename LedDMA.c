@@ -82,13 +82,57 @@ void makePulse(unsigned int head, int tail_length){
 }
 
 
+void makeRandomPulse(unsigned int head, int tail_length){
+	tail_length = tail_length <= 0 ? 1: tail_length;
+	unsigned int pos = head;
+	char color = 0x0;
+	
+	HSL red;
+	HSL green;
+	HSL blue;
+	HSL test;
+	
+	RGBtoHSL(0xFF0000, &red);
+	RGBtoHSL(0x00FF00, &green);
+	RGBtoHSL(0x0000FF, &blue);
+	
+
+	
+	for(int i = 0; i<tail_length;i++){
+
+		setColor(interpolateColor(red,green,tail_length,i),pos);
+		pos--;
+		pos = pos>150?150:pos;
+	}
+	for(int i = 0; i<tail_length;i++){
+
+		setColor(interpolateColor(green,blue,tail_length,i),pos);
+		pos--;
+		pos = pos>150?150:pos;
+	}
+	for(int i = 0; i<tail_length;i++){
+
+		setColor(interpolateColor(blue,red,tail_length,i),pos);
+		pos--;
+		pos = pos>150?150:pos;
+	}
+
+	setColor(0,pos);
+}
+
+
 
 
 int main(int argc, char **argv){
 
-
+int solidColor = 1;
+int pulseGenerator = 0;
 for(int i = 0; i<argc ; i++){
-	
+}
+
+if(argc>1){
+solidColor = 0;
+pulseGenerator = 1;
 }
 srand(time(0));
 setup_gpio();
@@ -127,27 +171,27 @@ RGBtoHSL(rand() % 0xFFFFFF,&finish);
 
 while(1){
 
-//printf("%d %d\r", readPin(20), readPin(21));
+
 printf("%d\n", j);
 
-/*
-for(int i = 0; i<150; i++){
-setColor(0xFF,i);
+if(solidColor){
+	solidColor(interpolateColor(start,finish,1000,j));
+	j++;
+	if(j == 1000){
+	HSLset(&start,&finish);
+	RGBtoHSL(rand() % 0xFFFFFF,&finish);
+	}
+	j = j%1000;
 }
-*/
-//setColor(0xFFFF00,j);
+if(PulseGenerator){
 
-
-solidColor(interpolateColor(start,finish,150,j));
-//solidColor(0);
-//makePulse(j, 20);
-
-j++;
-if(j == 150){
-HSLset(&start,&finish);
-RGBtoHSL(rand() % 0xFFFFFF,&finish);
-}
+makePulse(j, 20);
+j++
 j = j%150;
+}
+
+
+
 
 
 usleep(10000);
