@@ -61,20 +61,20 @@ void makePulse(unsigned int head, int tail_length){
 	
 	for(int i = 0; i<tail_length;i++){
 
-		setColor(interpolateColor(red,green,tail_length,i),pos, &test);
+		setColor(interpolateColor(red,green,tail_length,i, &test),pos);
 		pos--;
 		pos = pos>150?150:pos;
 	}
 	for(int i = 0; i<tail_length;i++){
 
-		setColor(interpolateColor(green,blue,tail_length,i),pos,&test);
+		setColor(interpolateColor(green,blue,tail_length,i,&test),pos);
 		pos--;
 		pos = pos>150?150:pos;
 		printf("%f, %f, %f | ", test.H, test.S, test.L);
 	}
 	for(int i = 0; i<tail_length;i++){
 
-		setColor(interpolateColor(blue,red,tail_length,i),pos,&test);
+		setColor(interpolateColor(blue,red,tail_length,i,&test),pos);
 		pos--;
 		pos = pos>150?150:pos;
 	}
