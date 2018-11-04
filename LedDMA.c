@@ -116,8 +116,12 @@ void makeRandomPulse(unsigned int head, int tail_length){
 		pos--;
 		pos = pos>150?150:pos;
 	}
+	
 	if(tail_length*3 < 150){
 		setColor(0,pos);
+	}
+	else{
+		setColor(0xFF0000,pos);
 	}
 }
 
