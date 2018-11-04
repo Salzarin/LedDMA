@@ -144,7 +144,8 @@ solidColor(interpolateColor(start,finish,150,j));
 
 j++;
 if(j == 150){
-//HSLset(&start,&finish);
+HSLset(&start,&finish);
+RGBtoHSL(rand() % 0xFFFFFF,&finish);
 }
 j = j%150;
 
