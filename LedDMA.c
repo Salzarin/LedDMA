@@ -177,24 +177,26 @@ printf("%d\n", j);
 if(solidColorFlag){
 	solidColor(interpolateColor(start,finish,1000,j));
 	j++;
-	if(j == 1000){
+	if(j == 100){
 	HSLset(&start,&finish);
 	RGBtoHSL(rand() % 0xFFFFFF,&finish);
 	}
-	j = j%1000;
+	j = j%100;
+	usleep(1000);
 }
 if(pulseGenerator){
 
 makePulse(j, 20);
 j++;
 j = j%150;
+usleep(100000);
 }
 
 
 
 
 
-usleep(10000);
+
 }
 //pthread_join(thread_id,NULL);
 return 0;
