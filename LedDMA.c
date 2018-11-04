@@ -87,8 +87,10 @@ void makePulse(unsigned int head, int tail_length){
 int main(int argc, char **argv){
 
 
-
-
+for(int i = 0; i<argc ; i++){
+	
+}
+srand(time(0));
 setup_gpio();
 
 setPinMode(18, 2);
@@ -117,11 +119,11 @@ printf("starting loop\n");
 solidColor(0x0);
 int j = 20;
 
-HSL red;
-HSL green;
+HSL start;
+HSL finish;
 
-RGBtoHSL(0xFF0000,&red);
-RGBtoHSL(0x00FF00,&green);
+RGBtoHSL(rand() % 0xFFFFFF,&start);
+RGBtoHSL(rand() % 0xFFFFFF,&finish);
 
 while(1){
 
@@ -136,11 +138,15 @@ setColor(0xFF,i);
 //setColor(0xFFFF00,j);
 
 
-//solidColor(interpolateColor(red,green,150,j));
+solidColor(interpolateColor(start,finish,150,j));
 //solidColor(0);
-makePulse(j, 20);
+//makePulse(j, 20);
 
 j++;
+if(j == 150){
+HSLset(&start,&finish);
+
+}
 j = j%150;
 
 
