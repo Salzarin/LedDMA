@@ -77,10 +77,10 @@ void RGBtoHSL(unsigned int color, HSL* hsl){
 	int tMax = 0;
 	int tMin = 4;
 	for(int i = 0; i<3;i++){
-		tMax = rgb[i]>cMax ? i : tMax;
-		cMax = rgb[i]>cMax ? rgb[i] : cMax;
-		tMin = rgb[i]<cMin ? i : tMin;
-		cMin = rgb[i]<cMin ? rgb[i] : cMin;		
+		tMax = rgb[i]>=cMax ? i : tMax;
+		cMax = rgb[i]>=cMax ? rgb[i] : cMax;
+		tMin = rgb[i]<=cMin ? i : tMin;
+		cMin = rgb[i]<=cMin ? rgb[i] : cMin;		
 	}
 	
 	float delta = cMax-cMin;
