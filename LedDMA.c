@@ -177,7 +177,6 @@ RGBtoHSL(rand() % 0xFFFFFF,&finish);
 while(1){
 
 
-printf("%d\n", j);
 
 if(solidColorFlag){
 	solidColor(interpolateColor(start,finish,1000,j));
