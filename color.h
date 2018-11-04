@@ -1,5 +1,6 @@
 #include <math.h>
-
+#ifndef COLOR_H
+#define COLOR_H
 typedef struct HSL{
 	float H;
 	float S;
@@ -15,3 +16,4 @@ void HSLset(HSL* dest, HSL* source){
 	dest->L = source->L;
 
 }
+#endif
