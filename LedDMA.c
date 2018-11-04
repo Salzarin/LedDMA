@@ -138,13 +138,13 @@ setColor(0xFF,i);
 //setColor(0xFFFF00,j);
 
 
-solidColor(interpolateColor(start,finish,150,j,NULL));
+//solidColor(interpolateColor(start,finish,150,j,NULL));
 //solidColor(0);
 //makePulse(j, 20);
 
 j++;
 if(j == 150){
-HSLset(&start,&finish);
+//HSLset(&start,&finish);
 }
 j = j%150;
 
