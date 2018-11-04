@@ -78,7 +78,6 @@ void makePulse(unsigned int head, int tail_length){
 		pos = pos>150?150:pos;
 	}
 
-	pos++;
 	setColor(0,pos);
 }
 
