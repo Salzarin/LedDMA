@@ -22,7 +22,7 @@ unsigned int HSLtoRGB(HSL hsl){
 	
 	int type = (int)(hsl.H/60.0);
 	type = type % 6;
-	float rgb[0];
+	float rgb[3] = {0,0,0};
 	switch(type){
 		case 0:
 			rgb[0] = C;
