@@ -177,7 +177,7 @@ printf("%d\n", j);
 if(solidColorFlag){
 	solidColor(interpolateColor(start,finish,1000,j));
 	j++;
-	if(j == 100){
+	if(j == 1000){
 	HSLset(&start,&finish);
 	RGBtoHSL(rand() % 0xFFFFFF,&finish);
 	}
@@ -189,7 +189,7 @@ if(pulseGenerator){
 makePulse(j, 20);
 j++;
 j = j%150;
-usleep(100000);
+usleep(10000);
 }
 
 
