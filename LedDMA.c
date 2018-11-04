@@ -145,7 +145,6 @@ solidColor(interpolateColor(start,finish,150,j,NULL));
 j++;
 if(j == 150){
 HSLset(&start,&finish);
-
 }
 j = j%150;
 
