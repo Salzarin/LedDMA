@@ -143,15 +143,17 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 
 	mosquitto_topic_matches_sub("state", message->topic, &match);
 	if (match) {
-		if(atoi(message->payload)){
-		solidColorFlag = 1;
-		pulseGenerator = 0;
+		if(message->payload){
+			if(atoi(message->payload)){
+			solidColorFlag = 1;
+			pulseGenerator = 0;
+			}
+			else{
+			solidColorFlag = 0;
+			pulseGenerator = 1;
+			}
+			j= 0;
 		}
-		else{
-		solidColorFlag = 1;
-		pulseGenerator = 0;
-		}
-		j= 0;
 	}
 
 }
