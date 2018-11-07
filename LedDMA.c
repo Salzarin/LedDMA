@@ -131,10 +131,16 @@ void makeRandomPulse(unsigned int head, int tail_length){
 }
 
 
-int on_message(struct mosquitto *mosq, void *userdata, const struct mosquitto_message *msg)
+void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_message *message)
 {
-	printf("%s %s (%d)\n", msg->topic, (const char *)msg->payload, msg->payloadlen);
-	return 0;
+	bool match = 0;
+	printf("got message '%.*s' for topic '%s'\n", message->payloadlen, (char*) message->payload, message->topic);
+
+	mosquitto_topic_matches_sub("ac", message->topic, &match);
+	if (match) {
+		printf("got message for AC topic\n");
+	}
+
 }
 
 int main(int argc, char *argv[]){
