@@ -35,6 +35,7 @@ void INThandler(int test){
 	
 	usleep(10000);
 	shutdown_dma();
+	mosquitto_lib_cleanup();
 	exit(1);
 }
 
@@ -166,7 +167,25 @@ printf("Finished Setting up PWM\n");
 setup_dma();
 set_dma();
 
+char clientid[24];
+struct mosquitto *mosq;
+int rc = 0;
+
 printf("Starting MQTT");
+mosquitto_lib_init();
+memset(clientid, 0, 24);
+snprintf(clientid, 23, "mysql_log_%d", getpid());
+mosq = mosquitto_new(clientid, true, 0);
+
+if(mosq){
+	
+	mosquitto_message_callback_set(mosq, message_callback);
+	rc = mosquitto_connect(mosq, "mqtts://eheplzcu:5iq2RpaDVH08@m15.cloudmqtt.com", 22293, 60);
+	mosquitto_subscribe(mosq, NULL, "ac", 0);
+	
+}
+else{
+}
 
 printf("starting loop\n");
 
@@ -183,6 +202,7 @@ RGBtoHSL(rand() % 0xFFFFFF,&finish);
 while(1){
 
 
+rc = mosquitto_loop(mosq, -1, 1);
 
 if(solidColorFlag){
 	solidColor(interpolateColor(start,finish,1000,j));
