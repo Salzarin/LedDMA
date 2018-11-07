@@ -18,7 +18,8 @@
 #include <mosquitto.h>
 
 struct mosquitto *mosq;
-
+int solidColorFlag = 1;
+int pulseGenerator = 0;
 
 void reset(){
 	
@@ -139,9 +140,16 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 	bool match = 0;
 	printf("got message '%.*s' for topic '%s'\n", message->payloadlen, (char*) message->payload, message->topic);
 
-	mosquitto_topic_matches_sub("ac", message->topic, &match);
+	mosquitto_topic_matches_sub("state", message->topic, &match);
 	if (match) {
-		printf("got message for AC topic\n");
+		if(atoi(message->payload)){
+		solidColorFlag = 1;
+		pulseGenerator = 0;
+		}
+		else{
+		solidColorFlag = 1;
+		pulseGenerator = 0;
+		}
 	}
 
 }
@@ -152,8 +160,7 @@ void connect_callback(struct mosquitto *mosq, void *obj, int result)
 
 int main(int argc, char *argv[]){
 
-int solidColorFlag = 1;
-int pulseGenerator = 0;
+
 
 if(argc>1){
 solidColorFlag = 0;
