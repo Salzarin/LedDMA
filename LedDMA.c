@@ -147,6 +147,9 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 		if(message->payload){
 			if(atoi(message->payload)){
 				state = 1;
+				if(!(pulseGenerator|solidColorFlag)){
+					solidColorFlag = 0;
+				}
 			}
 			else{
 				state = 0;
@@ -163,7 +166,6 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 			pulseGenerator = 1;
 			}
 			else{
-			solidColorFlag = 1;
 			pulseGenerator = 0;
 			}
 			j= 0;
