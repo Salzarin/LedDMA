@@ -17,6 +17,9 @@
 
 #include <mosquitto.h>
 
+struct mosquitto *mosq;
+
+
 void reset(){
 	
 	while(!(*(pwm+1) &0x2));
@@ -178,7 +181,6 @@ setup_dma();
 set_dma();
 
 char clientid[24];
-struct mosquitto *mosq;
 int rc = 0;
 
 printf("Starting MQTT\n");
@@ -195,6 +197,7 @@ if(mosq){
 	rc = mosquitto_connect(mosq, "m15.cloudmqtt.com", 12293, 60);
 	printf("Connecting to MQTT: %d",rc);
 	mosquitto_subscribe(mosq, NULL, "ac", 0);
+	rc = mosquitto_loop_start(mosq);
 	
 }
 else{
@@ -216,32 +219,27 @@ RGBtoHSL(rand() % 0xFFFFFF,&finish);
 while(1){
 
 
-rc = mosquitto_loop(mosq, -1, 1);
+	
 
-if(solidColorFlag){
-	solidColor(interpolateColor(start,finish,1000,j));
-	j++;
-	if(j == 1000){
-	HSLset(&start,&finish);
-	RGBtoHSL(rand() % 0xFFFFFF,&finish);
+	if(solidColorFlag){
+		solidColor(interpolateColor(start,finish,1000,j));
+		j++;
+		if(j == 1000){
+		HSLset(&start,&finish);
+		RGBtoHSL(rand() % 0xFFFFFF,&finish);
+		}
+		j = j%1000;
+		usleep(1000);
 	}
-	j = j%1000;
-	usleep(1000);
-}
-if(pulseGenerator){
+	if(pulseGenerator){
 
-makePulse(j, 50);
-j++;
-j = j%150;
-usleep(100000);
-}
-
-
-
-
+	makePulse(j, 50);
+	j++;
+	j = j%150;
+	usleep(100000);
+	}
 
 
 }
-//pthread_join(thread_id,NULL);
 return 0;
 }
