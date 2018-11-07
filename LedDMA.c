@@ -181,16 +181,18 @@ char clientid[24];
 struct mosquitto *mosq;
 int rc = 0;
 
-printf("Starting MQTT");
+printf("Starting MQTT\n");
 mosquitto_lib_init();
 memset(clientid, 0, 24);
 snprintf(clientid, 23, "mysql_log_%d", getpid());
 mosq = mosquitto_new(clientid, true, 0);
 
 if(mosq){
+	
 	mosquitto_connect_callback_set(mosq, connect_callback);
 	mosquitto_message_callback_set(mosq, message_callback);
 	rc = mosquitto_connect(mosq, "mqtts://eheplzcu:5iq2RpaDVH08@m15.cloudmqtt.com", 22293, 60);
+	printf("Connecting to MQTT: %d",rc);
 	mosquitto_subscribe(mosq, NULL, "ac", 0);
 	
 }
