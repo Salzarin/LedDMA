@@ -20,6 +20,7 @@
 struct mosquitto *mosq;
 int solidColorFlag = 1;
 int pulseGenerator = 0;
+int j = 0;
 
 void reset(){
 	
@@ -150,6 +151,7 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 		solidColorFlag = 1;
 		pulseGenerator = 0;
 		}
+		j= 0;
 	}
 
 }
@@ -215,7 +217,7 @@ printf("starting loop\n");
 
 
 solidColor(0x0);
-int j = 20;
+
 
 HSL start;
 HSL finish;
