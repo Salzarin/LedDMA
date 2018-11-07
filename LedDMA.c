@@ -15,6 +15,8 @@
 #include "dma.h"
 #include "color.h"
 
+#include <mosquitto.h>
+
 void reset(){
 	
 	while(!(*(pwm+1) &0x2));
