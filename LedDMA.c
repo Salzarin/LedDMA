@@ -191,7 +191,7 @@ if(mosq){
 	
 	mosquitto_connect_callback_set(mosq, connect_callback);
 	mosquitto_message_callback_set(mosq, message_callback);
-	rc = mosquitto_connect(mosq, "eheplzcu:5iq2RpaDVH08@m15.cloudmqtt.com", 22293, 60);
+	rc = mosquitto_connect(mosq, "broker.hivemq.com", 1883, 60);
 	printf("Connecting to MQTT: %d",rc);
 	mosquitto_subscribe(mosq, NULL, "ac", 0);
 	
