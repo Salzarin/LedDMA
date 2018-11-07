@@ -139,19 +139,17 @@ void makeRandomPulse(unsigned int head, int tail_length){
 void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_message *message)
 {
 	bool match = 0;
+	bool state = 1;
 	printf("got message '%.*s' for topic '%s'\n", message->payloadlen, (char*) message->payload, message->topic);
 
 	mosquitto_topic_matches_sub("state", message->topic, &match);
 	if (match) {
 		if(message->payload){
 			if(atoi(message->payload)){
-			solidColorFlag = 1;
-			pulseGenerator = 0;
+				state = 1;
 			}
 			else{
-			solidColor(0x0);
-			solidColorFlag = 0;
-			pulseGenerator = 0;
+				state = 0;
 			}
 			j= 0;
 		}
@@ -170,6 +168,14 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 			}
 			j= 0;
 		}
+	}
+	
+	
+	if(!(pulseGenerator|solidColorFlag)){
+		if(!state){
+			setColor(0x0);
+		}
+		
 	}
 }
 void connect_callback(struct mosquitto *mosq, void *obj, int result)
