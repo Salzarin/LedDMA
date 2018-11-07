@@ -162,7 +162,8 @@ printf("Finished Setting up PWM\n");
 setup_dma();
 set_dma();
 
-
+printf("Starting MQTT");
+mosquitto_lib_init();
 
 printf("starting loop\n");
 
