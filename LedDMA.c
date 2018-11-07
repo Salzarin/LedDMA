@@ -191,7 +191,8 @@ if(mosq){
 	
 	mosquitto_connect_callback_set(mosq, connect_callback);
 	mosquitto_message_callback_set(mosq, message_callback);
-	rc = mosquitto_connect(mosq, "mqtts://eheplzcu:5iq2RpaDVH08@m15.cloudmqtt.com", 22293, 60);
+	mosquitto_username_pw_set(mosq,"eheplzcu",5iq2RpaDVH08);
+	rc = mosquitto_connect(mosq, "mqtts://m15.cloudmqtt.com", 22293, 60);
 	printf("Connecting to MQTT: %d",rc);
 	mosquitto_subscribe(mosq, NULL, "ac", 0);
 	
