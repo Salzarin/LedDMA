@@ -195,6 +195,7 @@ if(mosq){
 	
 }
 else{
+	exit(1);
 }
 
 printf("starting loop\n");
