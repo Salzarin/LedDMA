@@ -149,13 +149,28 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 			pulseGenerator = 0;
 			}
 			else{
+			solidColor(0x0);
 			solidColorFlag = 0;
-			pulseGenerator = 1;
+			pulseGenerator = 0;
 			}
 			j= 0;
 		}
 	}
-
+	mosquitto_topic_matches_sub("Pulse Generator", message->topic, &match);
+	
+	if (match) {
+		if(message->payload){
+			if(atoi(message->payload)){
+			solidColorFlag = 0;
+			pulseGenerator = 1;
+			}
+			else{
+			solidColorFlag = 1;
+			pulseGenerator = 0;
+			}
+			j= 0;
+		}
+	}
 }
 void connect_callback(struct mosquitto *mosq, void *obj, int result)
 {
@@ -208,6 +223,7 @@ if(mosq){
 	rc = mosquitto_connect(mosq, "m15.cloudmqtt.com", 12293, 60);
 	printf("Connecting to MQTT: %d",rc);
 	mosquitto_subscribe(mosq, NULL, "state", 0);
+	mosquitto_subscribe(mosq, NULL, "Pulse Generator", 0);
 	rc = mosquitto_loop_start(mosq);
 	
 }
