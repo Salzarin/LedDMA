@@ -130,7 +130,11 @@ void makeRandomPulse(unsigned int head, int tail_length){
 }
 
 
-
+int on_message(struct mosquitto *mosq, void *userdata, const struct mosquitto_message *msg)
+{
+	printf("%s %s (%d)\n", msg->topic, (const char *)msg->payload, msg->payloadlen);
+	return 0;
+}
 
 int main(int argc, char *argv[]){
 
@@ -165,6 +169,18 @@ set_dma();
 printf("Starting MQTT");
 mosquitto_lib_init();
 
+	int rc = mosquitto_subscribe_callback(
+											on_message, NULL,
+											"ac", 0,
+											"mqtts://eheplzcu:5iq2RpaDVH08@m15.cloudmqtt.com", 22293,
+											NULL, 60, true,
+											NULL, NULL,
+											NULL, NULL);
+
+	if(rc){
+		printf("Error: %s\n", mosquitto_strerror(rc));
+	}
+	mosquitto_lib_cleanup();
 printf("starting loop\n");
 
 
