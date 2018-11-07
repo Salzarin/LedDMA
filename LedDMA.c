@@ -203,7 +203,7 @@ if(mosq){
 	mosquitto_username_pw_set(mosq,"eheplzcu","5iq2RpaDVH08");
 	rc = mosquitto_connect(mosq, "m15.cloudmqtt.com", 12293, 60);
 	printf("Connecting to MQTT: %d",rc);
-	mosquitto_subscribe(mosq, NULL, "ac", 0);
+	mosquitto_subscribe(mosq, NULL, "state", 0);
 	rc = mosquitto_loop_start(mosq);
 	
 }
