@@ -173,7 +173,7 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 	
 	if(!(pulseGenerator|solidColorFlag)){
 		if(!state){
-			setColor(0x0);
+			solidColor(0x0);
 		}
 		
 	}
