@@ -207,7 +207,6 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 			else{
 				
 			}
-			j= 0;
 		}
 	}
 	
@@ -216,7 +215,6 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 		if(message->payload){
 			brightness = atoi(message->payload);
 			solidColor(currentColor);
-			j= 0;
 		}
 	}
 	
