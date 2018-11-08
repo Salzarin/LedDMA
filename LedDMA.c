@@ -21,6 +21,7 @@ struct mosquitto *mosq;
 int solidColorFlag = 1;
 int pulseGenerator = 0;
 int j = 0;
+unsigned int currentColor = 0x0;
 
 void reset(){
 	
@@ -46,6 +47,7 @@ void INThandler(int test){
 
 
 void solidColor(unsigned int color){
+	currentColor = color;
 	for(int i = 0; i<150; i++){
 		setColor(color,i);
 	}
@@ -177,9 +179,44 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 	if (match) {
 		if(message->payload){
 			if(!strncmp("red", message->payload,sizeof("red"))){
-			solidColorFlag = 0;
-			pulseGenerator = 0;
-			solidColor(0xFF0000);
+				solidColorFlag = 0;
+				pulseGenerator = 0;
+				solidColor(0xFF0000);
+			}
+			else if(!strncmp("green", message->payload,sizeof("green"))){
+				solidColorFlag = 0;
+				pulseGenerator = 0;
+				solidColor(0x00FF00);
+			}
+			else if(!strncmp("blue", message->payload,sizeof("blue"))){
+				solidColorFlag = 0;
+				pulseGenerator = 0;
+				solidColor(0x0000FF);
+			}
+			else{
+				
+			}
+			j= 0;
+		}
+	}
+	
+	mosquitto_topic_matches_sub("brightness", message->topic, &match);
+	if (match) {
+		if(message->payload){
+			if(!strncmp("red", message->payload,sizeof("red"))){
+				solidColorFlag = 0;
+				pulseGenerator = 0;
+				solidColor(0xFF0000);
+			}
+			else if(!strncmp("green", message->payload,sizeof("green"))){
+				solidColorFlag = 0;
+				pulseGenerator = 0;
+				solidColor(0x00FF00);
+			}
+			else if(!strncmp("blue", message->payload,sizeof("blue"))){
+				solidColorFlag = 0;
+				pulseGenerator = 0;
+				solidColor(0x0000FF);
 			}
 			else{
 				
