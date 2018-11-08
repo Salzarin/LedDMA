@@ -52,7 +52,7 @@ void solidColor(unsigned int color){
 	HSL hsl;
 	RGBtoHSL(color, &hsl);
 	hsl.L = 0.5*((float)brightness)/100.0;
-	color = HSLtoRGB(&hsl);
+	color = HSLtoRGB(hsl);
 	for(int i = 0; i<150; i++){
 		setColor(color,i);
 	}
