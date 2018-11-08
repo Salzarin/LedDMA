@@ -176,14 +176,13 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 	mosquitto_topic_matches_sub("color", message->topic, &match);
 	if (match) {
 		if(message->payload){
-			if(strcmp("Red", message->payload){
+			if(strcmp("Red", message->payload)){
 			solidColorFlag = 0;
 			pulseGenerator = 0;
 			solidColor(0xFF0000);
 			}
 			else{
-			pulseGenerator = 0;
-			solidColorFlag = 1;
+				
 			}
 			j= 0;
 		}
