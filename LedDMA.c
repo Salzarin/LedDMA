@@ -213,6 +213,7 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 	if (match) {
 		if(message->payload){
 			brightness = atoi(message->payload);
+			solidColor(currentColor);
 			j= 0;
 		}
 	}
