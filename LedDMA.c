@@ -147,18 +147,17 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 		if(message->payload){
 			if(atoi(message->payload)){
 				state = 1;
-				if(!(pulseGenerator|solidColorFlag)){
-					solidColorFlag = 0;
-				}
+					solidColorFlag = 1;
 			}
 			else{
 				state = 0;
+				solidColorFlag = 0;
+				pulseGenerator = 0;
+				solidColor(0x0);
 			}
-			j= 0;
 		}
 	}
 	mosquitto_topic_matches_sub("Pulse Generator", message->topic, &match);
-	
 	if (match) {
 		if(message->payload){
 			if(atoi(message->payload)){
@@ -167,6 +166,7 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 			}
 			else{
 			pulseGenerator = 0;
+			solidColorFlag = 1;
 			}
 			j= 0;
 		}
