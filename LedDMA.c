@@ -230,6 +230,18 @@ void connect_callback(struct mosquitto *mosq, void *obj, int result)
 	printf("connect callback, rc=%d\n", result);
 }
 
+reconnect_callback(struct mosquitto *mosq, void *obj, int result){
+		printf("Lost Connection to Server.");
+		int rc = 0;
+		rc = mosquitto_connect(mosq, "m15.cloudmqtt.com", 12293, 60);
+		while(!rc){
+		printf("Attempting to Reconnect to Server.");
+		rc = mosquitto_connect(mosq, "m15.cloudmqtt.com", 12293, 60);
+		sleep(10);
+		}
+}
+
+
 int main(int argc, char *argv[]){
 
 
@@ -272,6 +284,7 @@ if(mosq){
 	
 	mosquitto_connect_callback_set(mosq, connect_callback);
 	mosquitto_message_callback_set(mosq, message_callback);
+	mosquitto_disconnect_callback_set(mosq, reconnect_callback);
 	mosquitto_username_pw_set(mosq,"eheplzcu","5iq2RpaDVH08");
 	rc = mosquitto_connect(mosq, "m15.cloudmqtt.com", 12293, 60);
 	printf("Connecting to MQTT: %d",rc);
