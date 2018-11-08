@@ -71,7 +71,9 @@ void makePulse(unsigned int head, int tail_length){
 	RGBtoHSL(0x00FF00, &green);
 	RGBtoHSL(0x0000FF, &blue);
 	
-
+	red.L = 0.5*((float)brightness)/100.0;
+	green.L = 0.5*((float)brightness)/100.0;
+	blue.L = 0.5*((float)brightness)/100.0;
 	
 	for(int i = 0; i<tail_length;i++){
 
