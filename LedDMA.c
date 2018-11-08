@@ -273,6 +273,7 @@ if(mosq){
 	mosquitto_subscribe(mosq, NULL, "state", 0);
 	mosquitto_subscribe(mosq, NULL, "Pulse Generator", 0);
 	mosquitto_subscribe(mosq, NULL, "color", 0);
+	mosquitto_subscribe(mosq, NULL, "brightness", 0);
 	rc = mosquitto_loop_start(mosq);
 	
 }
