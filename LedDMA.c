@@ -171,6 +171,23 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 			j= 0;
 		}
 	}
+
+
+	mosquitto_topic_matches_sub("color", message->topic, &match);
+	if (match) {
+		if(message->payload){
+			if(strcmp("Red", message->payload){
+			solidColorFlag = 0;
+			pulseGenerator = 0;
+			solidColor(0xFF0000);
+			}
+			else{
+			pulseGenerator = 0;
+			solidColorFlag = 1;
+			}
+			j= 0;
+		}
+	}
 	
 	
 	if(!(pulseGenerator|solidColorFlag)){
@@ -232,6 +249,7 @@ if(mosq){
 	printf("Connecting to MQTT: %d",rc);
 	mosquitto_subscribe(mosq, NULL, "state", 0);
 	mosquitto_subscribe(mosq, NULL, "Pulse Generator", 0);
+	mosquitto_subscribe(mosq, NULL, "color", 0);
 	rc = mosquitto_loop_start(mosq);
 	
 }
