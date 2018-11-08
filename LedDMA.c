@@ -230,7 +230,7 @@ void connect_callback(struct mosquitto *mosq, void *obj, int result)
 	printf("connect callback, rc=%d\n", result);
 }
 
-reconnect_callback(struct mosquitto *mosq, void *obj, int result){
+void reconnect_callback(struct mosquitto *mosq, void *obj, int result){
 		printf("Lost Connection to Server.");
 		int rc = 0;
 		rc = mosquitto_connect(mosq, "m15.cloudmqtt.com", 12293, 60);
