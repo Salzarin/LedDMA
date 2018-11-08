@@ -22,6 +22,7 @@ int solidColorFlag = 1;
 int pulseGenerator = 0;
 int j = 0;
 unsigned int currentColor = 0x0;
+unsigned int brightness = 50;
 
 void reset(){
 	
@@ -48,6 +49,10 @@ void INThandler(int test){
 
 void solidColor(unsigned int color){
 	currentColor = color;
+	HSL hsl;
+	RGBtoHSL(color, &hsl);
+	hsl.L = 0.5*((float)brightness)/100.0;
+	color = HSLtoRGB(&hsl);
 	for(int i = 0; i<150; i++){
 		setColor(color,i);
 	}
@@ -61,7 +66,6 @@ void makePulse(unsigned int head, int tail_length){
 	HSL red;
 	HSL green;
 	HSL blue;
-	HSL test;
 	
 	RGBtoHSL(0xFF0000, &red);
 	RGBtoHSL(0x00FF00, &green);
@@ -203,21 +207,7 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 	mosquitto_topic_matches_sub("brightness", message->topic, &match);
 	if (match) {
 		if(message->payload){
-			if(!strncmp("red", message->payload,sizeof("red"))){
-				solidColorFlag = 0;
-				pulseGenerator = 0;
-				solidColor(0xFF0000);
-			}
-			else if(!strncmp("green", message->payload,sizeof("green"))){
-				solidColorFlag = 0;
-				pulseGenerator = 0;
-				solidColor(0x00FF00);
-			}
-			else if(!strncmp("blue", message->payload,sizeof("blue"))){
-				solidColorFlag = 0;
-				pulseGenerator = 0;
-				solidColor(0x0000FF);
-			}
+			brightness = atoi(message->payload);
 			else{
 				
 			}
