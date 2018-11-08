@@ -197,6 +197,11 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 				pulseGenerator = 0;
 				solidColor(0x0000FF);
 			}
+			else if(!strncmp("white", message->payload,sizeof("blue"))){
+				solidColorFlag = 0;
+				pulseGenerator = 0;
+				solidColor(0xFFFFFF);
+			}
 			else{
 				
 			}
