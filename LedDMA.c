@@ -20,6 +20,7 @@
 struct mosquitto *mosq;
 int solidColorFlag = 1;
 int pulseGenerator = 0;
+int ChristmasMode = 0;
 int j = 0;
 unsigned int currentColor = 0x0;
 unsigned int brightness = 50;
@@ -161,6 +162,7 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 				state = 0;
 				solidColorFlag = 0;
 				pulseGenerator = 0;
+				ChristmasMode = 0;
 				solidColor(0x0);
 			}
 		}
@@ -218,8 +220,19 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 		}
 	}
 	
+	mosquitto_topic_matches_sub("date", message->topic, &match);
+	if (match) {
+		if(ChristmasMode){
+			if(!strncmp("Christmas", message->payload,sizeof("Christmas"))){
+				pulseGenerator = 0;
+				solidColorFlag = 0;
+				ChristmasMode = 1;
+			}
+			
+		}
+	}
 	
-	if(!(pulseGenerator|solidColorFlag)){
+	if(!(pulseGenerator|solidColorFlag|ChristmasMode)){
 		if(!state){
 			solidColor(0x0);
 		}
