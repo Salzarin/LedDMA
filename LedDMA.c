@@ -222,14 +222,11 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 	
 	mosquitto_topic_matches_sub("date", message->topic, &match);
 	if (match) {
-		if(ChristmasMode){
 			if(!strncmp("Christmas", message->payload,sizeof("Christmas"))){
 				pulseGenerator = 0;
 				solidColorFlag = 0;
 				ChristmasMode = 1;
 			}
-			
-		}
 	}
 	
 	if(!(pulseGenerator|solidColorFlag|ChristmasMode)){
