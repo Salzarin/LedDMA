@@ -389,7 +389,7 @@ while(1){
 		int newLightArray[150];
 		memcpy(newLightArray+1,lightArray,149*(sizeof(int)));
 		newLightArray[0] = color;
-		for(j = 0; j<1000;j++){
+		for(j = 0; j<10000;j++){
 			for(int i = 0; i<150;i++){
 				RGBtoHSL(lightArray[i],&start);
 				RGBtoHSL(newLightArray[i],&finish);
