@@ -293,6 +293,7 @@ if(mosq){
 	mosquitto_subscribe(mosq, NULL, "Pulse Generator", 0);
 	mosquitto_subscribe(mosq, NULL, "color", 0);
 	mosquitto_subscribe(mosq, NULL, "brightness", 0);
+	mosquitto_subscribe(mosq, NULL, "date", 0);
 	rc = mosquitto_loop_start(mosq);
 	
 }
@@ -327,6 +328,7 @@ while(1){
 		j = j%1000;
 		usleep(1000);
 	}
+	
 	if(pulseGenerator){
 
 	makePulse(j, 50);
@@ -334,7 +336,10 @@ while(1){
 	j = j%150;
 	usleep(100000);
 	}
-
+	
+	if(ChristmasMode){
+	
+	}
 
 }
 return 0;
