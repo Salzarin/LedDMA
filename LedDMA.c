@@ -394,7 +394,7 @@ while(1){
 		newlightArray[0] = color;
 		for(j = 0; j<1000;j++){
 			for(int i = 0; i<150;i++){
-				setColor(interpolateColor(lightArray[i],newLightArray[i],1000,j);
+				setColor(interpolateColor(lightArray[i],newLightArray[i],1000,j),i);
 			}
 			usleep(1000);
 		}
