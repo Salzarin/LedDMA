@@ -348,7 +348,31 @@ while(1){
 	}
 	
 	if(ChristmasMode){
-	
+		for(int i = 0; i<150;i++){
+			int r = rand()%5;
+			int color = 0x0;
+			switch(r){
+			case 0:
+				color = 0xFF0000;
+			break;
+			case 1:
+				color = 0x00FF00;
+			break;
+			case 2:
+				color = 0x0000FF;
+			break;
+			case 3:
+				color = 0xFFA500;
+			break;
+			case 4:
+				color = 0xFFDF00;
+			break;
+			default:
+			break;
+			}
+		}
+		setColor(color,i);
+		usleep(2000000);
 	}
 
 }
