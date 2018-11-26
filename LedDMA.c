@@ -371,7 +371,7 @@ while(1){
 	}
 	
 	if(ChristmasMode){
-			int r = rand()%4;
+			int r = rand()%3;
 			int color = 0x0;
 			switch(r){
 			case 0:
@@ -383,9 +383,6 @@ while(1){
 			case 2:
 				color = 0x0000FF;
 			break;
-			case 3:
-				color = 0xFFA500;
-			break;
 			default:
 			break;
 			}
@@ -396,7 +393,7 @@ while(1){
 			for(int i = 0; i<150;i++){
 				RGBtoHSL(lightArray[i],&start);
 				RGBtoHSL(newLightArray[i],&finish);
-				setColor(interpolateColor(start,finish,1000,j),i);
+				setColor(interpolateColor(start,finish,10000,j),i);
 			}
 			usleep(1000);
 		}
