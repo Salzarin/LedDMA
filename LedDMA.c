@@ -371,9 +371,9 @@ while(1){
 			break;
 			}
 		setColor(color,i);
-		usleep(2000000);
+		
 		}
-
+	usleep(2000000);
 	}
 
 }
