@@ -401,7 +401,7 @@ while(1){
 		
 		for(j = 0; j<2000;j++){
 			for(int i = 0; i<150;i++){
-				RGBtoHSL(newlightArray[i],&finish);
+				RGBtoHSL(newLightArray[i],&finish);
 				setColor(interpolateColor(black,finish,2000,j),i);
 			}
 			usleep(1000);
