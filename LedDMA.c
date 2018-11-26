@@ -370,9 +370,10 @@ while(1){
 			default:
 			break;
 			}
-		}
 		setColor(color,i);
 		usleep(2000000);
+		}
+
 	}
 
 }
