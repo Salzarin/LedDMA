@@ -389,14 +389,16 @@ while(1){
 			default:
 			break;
 			}
-		
-		memcpy(lightArray+1,lightArray,149*(sizeof(int)));
-		lightArray[0] = color;
-		for(int i = 0; i<150;i++){
-			setColor(lightArray[i],i);
+		int newLightArray[150];
+		memcpy(newLightArray+1,lightArray,149*(sizeof(int)));
+		newlightArray[0] = color;
+		for(j = 0; j<1000;j++){
+			for(int i = 0; i<150;i++){
+				setColor(interpolateColor(lightArray[i],newLightArray[i],1000,j);
+			}
+			usleep(1000);
 		}
-		
-	usleep(2000000);
+		memcpy(lightArray,newLightArray,150*sizeof(int));
 	}
 
 }
