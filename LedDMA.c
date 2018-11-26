@@ -246,6 +246,7 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 					default:
 					break;
 					}
+					lightArray[i] = color;
 				}
 				
 			}
