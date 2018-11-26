@@ -24,6 +24,7 @@ int ChristmasMode = 0;
 int j = 0;
 unsigned int currentColor = 0x0;
 unsigned int brightness = 50;
+int lightArray[150];
 
 void reset(){
 	
@@ -226,6 +227,27 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 				pulseGenerator = 0;
 				solidColorFlag = 0;
 				ChristmasMode = 1;
+				for(int i = 0; i<150;i++){
+					int r = rand()%4;
+					int color = 0x0;
+					switch(r){
+					case 0:
+						color = 0xFF0000;
+					break;
+					case 1:
+						color = 0x00FF00;
+					break;
+					case 2:
+						color = 0x0000FF;
+					break;
+					case 3:
+						color = 0xFFA500;
+					break;
+					default:
+					break;
+					}
+				}
+				
 			}
 	}
 	
@@ -348,7 +370,6 @@ while(1){
 	}
 	
 	if(ChristmasMode){
-		for(int i = 0; i<150;i++){
 			int r = rand()%4;
 			int color = 0x0;
 			switch(r){
@@ -367,9 +388,13 @@ while(1){
 			default:
 			break;
 			}
-		setColor(color,i);
 		
+		memcpy(lightArray+1,lightArray,149*(sizeof(int)));
+		lightArray[0] = color;
+		for(int i = 0; i<150;i++){
+			setColor(lightArray[i],i);
 		}
+		
 	usleep(2000000);
 	}
 
