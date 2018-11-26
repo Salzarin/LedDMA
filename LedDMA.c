@@ -349,7 +349,7 @@ while(1){
 	
 	if(ChristmasMode){
 		for(int i = 0; i<150;i++){
-			int r = rand()%5;
+			int r = rand()%4;
 			int color = 0x0;
 			switch(r){
 			case 0:
@@ -363,9 +363,6 @@ while(1){
 			break;
 			case 3:
 				color = 0xFFA500;
-			break;
-			case 4:
-				color = 0xFFDF00;
 			break;
 			default:
 			break;
