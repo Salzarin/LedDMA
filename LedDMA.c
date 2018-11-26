@@ -394,8 +394,8 @@ while(1){
 		newlightArray[0] = color;
 		for(j = 0; j<1000;j++){
 			for(int i = 0; i<150;i++){
-				RGBtoHSL(lightArray,&start);
-				RGBtoHSL(newLightArray,&finish);
+				RGBtoHSL(lightArray[i],&start);
+				RGBtoHSL(newLightArray[i],&finish);
 				setColor(interpolateColor(start,finish,1000,j),i);
 			}
 			usleep(1000);
