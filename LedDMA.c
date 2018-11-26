@@ -389,23 +389,12 @@ while(1){
 		int newLightArray[150];
 		memcpy(newLightArray+1,lightArray,149*(sizeof(int)));
 		newLightArray[0] = color;
-		HSL black;
-		RGBtoHSL(0x0,&black);
-		for(j = 0; j<2000;j++){
-			for(int i = 0; i<150;i++){
-				RGBtoHSL(lightArray[i],&start);
-				setColor(interpolateColor(start,black,2000,j),i);
-			}
-			usleep(1000);
+		for(int i = 0; i<150;i++){
+			setColor(newLightArray[i],i);
 		}
-		
-		for(j = 0; j<2000;j++){
-			for(int i = 0; i<150;i++){
-				RGBtoHSL(newLightArray[i],&finish);
-				setColor(interpolateColor(black,finish,2000,j),i);
-			}
-			usleep(1000);
-		}
+		usleep(100000);
+
+
 		
 		memcpy(lightArray,newLightArray,150*sizeof(int));
 	}
